@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reynard Adrian — Portfolio & CV</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Reynard Adrian — Software Developer. Portfolio and CV." />
+  <style>
+    :root{
+      --bg:#07101a;
+      --card:#0b1620;
+      --muted:#9fb6bf;
+      --accent:#00f5ff;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius:14px;
+      --maxwidth:1100px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(0,245,255,0.035), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(100,80,255,0.02), transparent),
+                  var(--bg);
+      color:#d4f3f6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:var(--maxwidth);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
+
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .logo{
+      width:56px;height:56px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent), #6ce0ff);
+      display:grid;place-items:center;
+      color:#021018;font-weight:800;font-size:20px;
+      box-shadow: 0 6px 24px rgba(0,245,255,0.06), 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      margin-left:14px;
+      font-weight:600;
+      transition:color .18s, transform .18s;
+    }
+    nav a:hover{ color:var(--accent); transform:translateY(-2px) }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      align-items:start;
+      margin-bottom:28px;
+    }
+    @media (max-width:880px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow: 0 6px 30px rgba(2,10,14,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .title{
+      font-size:26px;font-weight:700;margin:0 0 6px 0;
+      letter-spacing:-0.2px;
+      color:#e7ffff;
+    }
+    .subtitle{ color:var(--muted); margin:0 0 14px 0; font-weight:600 }
+
+    .about p{ color: #cfeef2; margin-top:0; margin-bottom:12px }
+
+    .badges{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px }
+    .badge{
+      padding:8px 12px;border-radius:999px;background:var(--glass);
+      color:var(--muted); font-weight:600; font-size:13px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Sidebar card */
+    .profile{
+      text-align:center;
+      padding-top:28px;
+    }
+    .avatar{
+      width:120px;height:120px;border-radius:18px;margin:0 auto 14px auto;
+      background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:grid;place-items:center;font-weight:800;color:var(--accent);font-size:42px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .contact{ margin-top:10px; color:var(--muted); font-weight:600; font-size:14px }
+    .contact a{ color:var(--muted); text-decoration:none; display:block; margin-top:6px }
+    .cta{ margin-top:18px; display:flex; gap:10px; justify-content:center }
+
+    .btn{
+      background: linear-gradient(90deg, rgba(0,245,255,0.08), rgba(108,224,255,0.06));
+      color:var(--accent); font-weight:700; padding:10px 14px; border-radius:12px;
+      text-decoration:none; border:1px solid rgba(0,245,255,0.12);
+      transition: transform .12s, box-shadow .12s;
+    }
+    .btn:hover{ transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,245,255,0.06) }
+
+    /* Sections */
+    section{ margin-bottom:22px; }
+    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    @media (max-width:880px){ .grid-2{ grid-template-columns: 1fr; } }
+
+    .projects{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+    @media (max-width:880px){ .projects{ grid-template-columns: 1fr; } }
+
+    .project{
+      padding:14px; border-radius:12px; background: linear-gradient(180deg,var(--glass),var(--glass-2));
+      border:1px solid rgba(255,255,255,0.02);
+      transition: transform .12s, box-shadow .12s;
+    }
+    .project:hover{ transform:translateY(-6px); box-shadow: 0 18px 60px rgba(0,0,0,0.6) }
+    .project h4{ margin:0 0 6px 0; color:#eaffff }
+    .project p{ color:var(--muted); margin:0 0 10px 0 }
+
+    .meta{ font-size:13px; color:var(--muted); display:flex; gap:10px; flex-wrap:wrap }
+
+    .section-title{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px }
+    .small-muted{ color:var(--muted); font-weight:600 }
+
+    footer{
+      margin-top:12px; color:var(--muted); text-align:center; font-size:14px;
+      opacity:0.9;
+    }
+
+    /* CV preview */
+    .pdf-embed{ width:100%; height:420px; border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid rgba(255,255,255,0.03) }
+
+    /* subtle neon divider */
+    .neon-line{ height:2px; background:linear-gradient(90deg, transparent, rgba(0,245,255,0.06), transparent); margin:14px 0; border-radius:4px }
+
+    /* small utilities */
+    .chips{ display:flex; gap:8px; flex-wrap:wrap }
+    .muted{ color:var(--muted) }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">RA</div>
+        <div>
+          <div style="font-weight:800;color:#e7ffff">Reynard Adrian</div>
+          <div style="color:var(--muted);font-size:13px">Software Developer • Computer Science</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card about">
+          <div class="section-title">
+            <div>
+              <h1 class="title">Dark-mode Portfolio — Reynard Adrian</h1>
+              <div class="subtitle">Programming enthusiast focused on debugging, logic, and software development.</div>
+            </div>
+            <div class="small-muted">Jakarta, Indonesia</div>
+          </div>
+
+          <p>
+            I am a programming enthusiast who has a passion in debugging and understanding the logic of code.
+            I have experience developing software, integrating AI models, and building game mechanics. I also
+            have hands-on experience assembling hardware and collaborating on research projects in machine learning.
+          </p>
+
+          <div class="neon-line"></div>
+
+          <div style="display:flex;gap:18px;align-items:center;">
+            <div style="flex:1">
+              <div style="font-weight:700;margin-bottom:8px">Key Skills</div>
+              <div class="badges">
+                <div class="badge">C</div>
+                <div class="badge">C#</div>
+                <div class="badge">C++</div>
+                <div class="badge">Python</div>
+                <div class="badge">Java</div>
+                <div class="badge">Unity / GameDev</div>
+                <div class="badge">Machine Learning</div>
+                <div class="badge">Web Dev</div>
+              </div>
+            </div>
+
+            <div style="width:220px">
+              <div style="font-weight:700;margin-bottom:8px">Download CV</div>
+              <!-- Make sure to rename your uploaded CV to CV.pdf and place it next to this index.html -->
+              <a class="btn" href="./CV.pdf" download>Download CV (PDF)</a>
+              <div style="font-size:12px;color:var(--muted);margin-top:8px">Or preview below</div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px">
+            <div class="section-title">
+              <div><strong style="color:#e7ffff">Selected Projects</strong></div>
+              <div class="muted">Team & Individual work — AI, Web, GameDev</div>
+            </div>
+
+            <div class="projects" id="projects">
+              <article class="project">
+                <h4>SkillLink</h4>
+                <p>Job-matching website with advanced categorization; responsible for front-end + back-end features and responsive UI.</p>
+                <div class="meta">
+                  <span>Stack: HTML, CSS, JS, Backend</span>
+                  <a class="btn" href="#project-skilllink" style="padding:6px 10px;font-size:13px">Read</a>
+                </div>
+              </article>
+
+              <article class="project">
+                <h4>Astro-ACE</h4>
+                <p>Bullet-hell 2D shooter (Unity, C#) — implemented player shooting, bullet patterns and enemy spawning.</p>
+                <div class="meta">
+                  <span>Stack: Unity, C#</span>
+                  <a class="btn" href="#project-astro" style="padding:6px 10px;font-size:13px">Read</a>
+                </div>
+              </article>
+
+              <article class="project">
+                <h4>QuickTask</h4>
+                <p>Web platform that uses AI/NLP to suggest writing improvements; I worked on front-end and AI integration.</p>
+                <div class="meta">
+                  <span>Stack: Web, NLP</span>
+                  <a class="btn" href="#project-quicktask" style="padding:6px 10px;font-size:13px">Read</a>
+                </div>
+              </article>
+
+              <article class="project">
+                <h4>Signature Forgery Detection</h4>
+                <p>Implemented EGACNN and CNN-AE models to compare real vs fake signatures for fraud prevention research.</p>
+                <div class="meta">
+                  <span>Stack: PyTorch, CV</span>
+                  <a class="btn" href="#project-signature" style="padding:6px 10px;font-size:13px">Read</a>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <div id="project-skilllink" style="margin-top:18px">
+            <h3 style="margin:0 0 8px 0">SkillLink — details</h3>
+            <p class="muted">A job-categorization site: built responsive UI and implemented categorization and search. Learned team-based workflows and UI/UX tradeoffs.</p>
+          </div>
+
+          <div id="project-astro" style="margin-top:12px">
+            <h3 style="margin:0 0 8px 0">Astro-ACE — details</h3>
+            <p class="muted">Indie game: implemented shooting, enemy patterns, and optimization in Unity using C#.</p>
+          </div>
+
+          <div id="project-quicktask" style="margin-top:12px">
+            <h3 style="margin:0 0 8px 0">QuickTask — details</h3>
+            <p class="muted">Front-end + integration with an NLP model for contextual writing suggestions.</p>
+          </div>
+
+          <div id="project-signature" style="margin-top:12px">
+            <h3 style="margin:0 0 8px 0">Signature Forgery — details</h3>
+            <p class="muted">Implemented and compared EGACNN and CNN-AE models for signature forgery detection. Focus on model evaluation and reconstruction error analysis.</p>
+          </div>
+
+        </div>
+
+        <aside class="card profile">
+          <div class="avatar">RA</div>
+          <div style="font-weight:800;font-size:18px;color:#e7ffff">Reynard Adrian</div>
+          <div class="contact">
+            <div>Jakarta, Indonesia</div>
+            <a href="tel:+628157072877" style="color:var(--muted);">+62 815-7072-877</a>
+            <a href="mailto:reynardadrian25@gmail.com" style="color:var(--muted);">reynardadrian25@gmail.com</a>
+            <a href="#" style="color:var(--muted);">GitHub • replace-with-profile</a>
+            <a href="#" style="color:var(--muted);">LinkedIn • replace-with-profile</a>
+          </div>
+
+          <div class="cta">
+            <a class="btn" href="./Reynard-Portfolio.pdf" target="_blank" style="font-size:14px">Open Portfolio (PDF)</a>
+            <a class="btn" href="./CV.pdf" download style="font-size:14px">Download CV</a>
+          </div>
+
+          <div style="margin-top:18px; text-align:left; width:100%; padding:0 16px;">
+            <div class="small-muted" style="margin-bottom:8px">Education</div>
+            <div style="font-weight:700">BINUS University</div>
+            <div class="muted">Bachelor of Computer Science (2023 – Present)</div>
+
+            <div style="margin-top:10px">
+              <div class="small-muted">Strengths</div>
+              <ul style="padding-left:18px;margin:6px 0;color:var(--muted)">
+                <li>Problem solving & critical thinking</li>
+                <li>Adaptive team player</li>
+                <li>Debugging & logic interpretation</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="education" class="card">
+        <div class="section-title">
+          <div><strong style="color:#e7ffff">Education & Experience</strong></div>
+          <div class="muted">Academic background and selected activities</div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <h4 style="margin:0 0 6px 0">Education</h4>
+            <p class="muted" style="margin:0 0 10px 0"><strong>BINUS University</strong> — Bachelor of Computer Science (2023 – Present)</p>
+            <p class="muted" style="margin:0 0 10px 0"><strong>St. Angela Senior High School</strong> — Science Program (2020 – 2023)</p>
+
+            <h4 style="margin-top:12px;margin-bottom:6px">Selected Projects & Experience</h4>
+            <ul style="color:var(--muted);padding-left:18px;margin-top:6px">
+              <li>SkillLink — job categorization website (front-end & back-end)</li>
+              <li>QuickTask — front-end + AI integration (NLP)</li>
+              <li>Astro-ACE — Unity 2D shooter (C#)</li>
+              <li>Signature Forgery Detection — EGACNN & CNN-AE (research)</li>
+              <li>Social Media Virtual Assistant — AI chatbot for elderly (TTS/STT)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 style="margin:0 0 6px 0">Leadership & Volunteer</h4>
+            <p class="muted" style="margin:0">SkillLink & QuickTask leadership roles: task assignment, coordinating team delivery under deadlines.</p>
+
+            <div style="margin-top:12px">
+              <h4 style="margin:0 0 6px 0">Technical Skills</h4>
+              <div class="chips">
+                <div class="badge">C / C# / C++</div>
+                <div class="badge">Python</div>
+                <div class="badge">Java</div>
+                <div class="badge">Unity</div>
+                <div class="badge">Machine Learning</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="card">
+        <div class="section-title">
+          <div><strong style="color:#e7ffff">Contact</strong></div>
+          <div class="muted">Let's connect</div>
+        </div>
+
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <form id="contactForm" class="card" style="padding:14px;background:transparent;border:1px dashed rgba(255,255,255,0.02)">
+              <label class="muted" for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
+
+              <label class="muted" for="email" style="margin-top:12px;display:block">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
+
+              <label class="muted" for="message" style="margin-top:12px;display:block">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Say hi or propose a collaboration..." style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"></textarea>
+
+              <div style="margin-top:10px; text-align:right">
+                <button type="submit" class="btn">Send Message</button>
+              </div>
+              <div id="formStatus" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
+            </form>
+          </div>
+
+          <div style="flex-basis:320px;min-width:260px">
+            <div style="font-weight:700">Direct</div>
+            <div class="muted" style="margin-top:6px">Email: reynardadrian25@gmail.com</div>
+            <div class="muted">Phone: +62 815-7072-877</div>
+
+            <div style="margin-top:12px">
+              <div style="font-weight:700">Portfolio PDF</div>
+              <div style="color:var(--muted);margin-top:6px">Open the portfolio PDF you uploaded:</div>
+              <a class="btn" href="./Reynard-Portfolio.pdf" target="_blank" style="margin-top:10px;display:inline-block">Open Portfolio (PDF)</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <div><strong style="color:#e7ffff">CV Preview</strong></div>
+          <div class="muted">Quick view of your uploaded CV</div>
+        </div>
+
+        <div class="pdf-embed">
+          <!-- If browser supports embedded PDFs, it will display. Otherwise the link will be used. -->
+          <iframe src="./CV.pdf" style="width:100%;height:100%;border:0"></iframe>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Reynard Adrian — Built with ❤️ • Dark tech portfolio template
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // small interactivity: smooth scroll + fake form send
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // smooth scroll for nav links
+    document.querySelectorAll('nav a').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      })
+    });
+
+    // fake contact form behavior (replace with real endpoint if you add one)
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      status.textContent = "Thanks — message composed locally. To actually send messages, connect this form to an email/API (instructions in README).";
+      status.style.color = "var(--muted)";
+      setTimeout(()=>status.textContent='',6000);
+    });
+  </script>
+</body>
+</html>
+
