@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Reynard Adrian — Portfolio & CV</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Reynard Adrian — Portfolio (Slides)</title>
+  <meta name="description" content="Reynard Adrian — Slide-style portfolio and CV.">
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <meta name="description" content="Reynard Adrian — Software Developer. Portfolio and CV." />
   <style>
     :root{
       --bg:#07101a;
@@ -16,442 +15,392 @@
       --muted:#9fb6bf;
       --accent:#00f5ff;
       --glass: rgba(255,255,255,0.03);
-      --glass-2: rgba(255,255,255,0.02);
-      --radius:14px;
-      --maxwidth:1100px;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      --radius:12px;
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(0,245,255,0.035), transparent),
-                  radial-gradient(900px 400px at 90% 90%, rgba(100,80,255,0.02), transparent),
-                  var(--bg);
-      color:#d4f3f6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      padding:32px 20px;
-      display:flex;
-      justify-content:center;
+    html,body{height:100%;margin:0;background:var(--bg);-webkit-font-smoothing:antialiased}
+    body{overflow:hidden;color:#d4f3f6}
+
+    /* Stage / slides container */
+    .stage{
+      width:100vw; height:100vh; position:relative; overflow:hidden;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(0,245,255,0.03), transparent),
+        radial-gradient(900px 400px at 90% 90%, rgba(100,80,255,0.02), transparent),
+        var(--bg);
     }
 
-    .wrap{
-      width:100%;
-      max-width:var(--maxwidth);
+    .slides{
+      width:100%; height:100%;
+      transition: transform 700ms cubic-bezier(.2,.9,.2,1);
+      will-change: transform;
     }
 
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:28px;
+    .slide{
+      width:100vw; height:100vh; display:flex; align-items:center; justify-content:center;
+      padding:48px; scroll-snap-align:start;
     }
 
-    .brand{
-      display:flex;
-      gap:14px;
-      align-items:center;
-    }
-
-    .logo{
-      width:56px;height:56px;border-radius:12px;
-      background:linear-gradient(135deg,var(--accent), #6ce0ff);
-      display:grid;place-items:center;
-      color:#021018;font-weight:800;font-size:20px;
-      box-shadow: 0 6px 24px rgba(0,245,255,0.06), 0 2px 8px rgba(0,0,0,0.6);
-    }
-
-    nav a{
-      color:var(--muted);
-      text-decoration:none;
-      margin-left:14px;
-      font-weight:600;
-      transition:color .18s, transform .18s;
-    }
-    nav a:hover{ color:var(--accent); transform:translateY(-2px) }
-
-    .hero{
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:28px;
-      align-items:start;
-      margin-bottom:28px;
-    }
-    @media (max-width:880px){
-      .hero{ grid-template-columns: 1fr; }
-    }
-
+    /* Card inside slide */
     .card{
+      width:min(1100px,92%); height:min(720px,86%); border-radius:16px; padding:28px;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:var(--radius);
-      padding:20px;
-      box-shadow: 0 6px 30px rgba(2,10,14,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+      display:grid; grid-template-columns: 1fr 360px; gap:28px; align-items:start;
     }
+    @media (max-width:900px){ .card{grid-template-columns:1fr; padding:18px} .card aside{order:2} }
 
-    .title{
-      font-size:26px;font-weight:700;margin:0 0 6px 0;
-      letter-spacing:-0.2px;
-      color:#e7ffff;
-    }
-    .subtitle{ color:var(--muted); margin:0 0 14px 0; font-weight:600 }
+    /* Left content */
+    .left h1{margin:0;font-size:30px;letter-spacing:-0.4px;color:#e7ffff}
+    .left .subtitle{color:var(--muted);font-weight:600;margin-top:6px}
+    .left p{color:#cfeef2; margin-top:14px; line-height:1.5}
 
-    .about p{ color: #cfeef2; margin-top:0; margin-bottom:12px }
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+    .badge{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:600}
 
-    .badges{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px }
-    .badge{
-      padding:8px 12px;border-radius:999px;background:var(--glass);
-      color:var(--muted); font-weight:600; font-size:13px;
-      border:1px solid rgba(255,255,255,0.02);
-    }
-
-    /* Sidebar card */
-    .profile{
-      text-align:center;
-      padding-top:28px;
-    }
-    .avatar{
-      width:120px;height:120px;border-radius:18px;margin:0 auto 14px auto;
-      background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      display:grid;place-items:center;font-weight:800;color:var(--accent);font-size:42px;
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .contact{ margin-top:10px; color:var(--muted); font-weight:600; font-size:14px }
-    .contact a{ color:var(--muted); text-decoration:none; display:block; margin-top:6px }
-    .cta{ margin-top:18px; display:flex; gap:10px; justify-content:center }
+    /* Right sidebar */
+    aside{background:transparent;border-left:1px solid rgba(255,255,255,0.02);padding-left:18px}
+    .avatar{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,var(--accent),#6ce0ff);display:grid;place-items:center;font-weight:800;color:#021018;font-size:40px;margin:0 auto 12px}
+    .contact{color:var(--muted);text-align:center}
+    .cta{display:flex;gap:10px;justify-content:center;margin-top:18px}
 
     .btn{
       background: linear-gradient(90deg, rgba(0,245,255,0.08), rgba(108,224,255,0.06));
       color:var(--accent); font-weight:700; padding:10px 14px; border-radius:12px;
       text-decoration:none; border:1px solid rgba(0,245,255,0.12);
-      transition: transform .12s, box-shadow .12s;
-    }
-    .btn:hover{ transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,245,255,0.06) }
-
-    /* Sections */
-    section{ margin-bottom:22px; }
-    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
-    @media (max-width:880px){ .grid-2{ grid-template-columns: 1fr; } }
-
-    .projects{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
-    @media (max-width:880px){ .projects{ grid-template-columns: 1fr; } }
-
-    .project{
-      padding:14px; border-radius:12px; background: linear-gradient(180deg,var(--glass),var(--glass-2));
-      border:1px solid rgba(255,255,255,0.02);
-      transition: transform .12s, box-shadow .12s;
-    }
-    .project:hover{ transform:translateY(-6px); box-shadow: 0 18px 60px rgba(0,0,0,0.6) }
-    .project h4{ margin:0 0 6px 0; color:#eaffff }
-    .project p{ color:var(--muted); margin:0 0 10px 0 }
-
-    .meta{ font-size:13px; color:var(--muted); display:flex; gap:10px; flex-wrap:wrap }
-
-    .section-title{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px }
-    .small-muted{ color:var(--muted); font-weight:600 }
-
-    footer{
-      margin-top:12px; color:var(--muted); text-align:center; font-size:14px;
-      opacity:0.9;
     }
 
-    /* CV preview */
-    .pdf-embed{ width:100%; height:420px; border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid rgba(255,255,255,0.03) }
+    /* Projects grid for projects slide */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media (max-width:900px){ .projects{grid-template-columns:1fr} }
 
-    /* subtle neon divider */
-    .neon-line{ height:2px; background:linear-gradient(90deg, transparent, rgba(0,245,255,0.06), transparent); margin:14px 0; border-radius:4px }
+    .project{padding:14px;border-radius:12px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
+    .project h4{margin:0 0 6px 0;color:#eaffff}
+    .project p{color:var(--muted);margin:0}
 
-    /* small utilities */
-    .chips{ display:flex; gap:8px; flex-wrap:wrap }
-    .muted{ color:var(--muted) }
+    /* CV embed slide */
+    .pdf-embed{width:100%;height:100%;border-radius:12px;overflow:hidden;background:#061118;border:1px solid rgba(255,255,255,0.02)}
+
+    /* Dots nav */
+    .dots{
+      position:fixed; right:20px; top:50%; transform:translateY(-50%);
+      display:flex; flex-direction:column; gap:10px; z-index:40;
+    }
+    .dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.06);cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
+    .dot.active{background:linear-gradient(90deg,var(--accent),#6ce0ff);box-shadow:0 6px 20px rgba(0,245,255,0.06)}
+
+    /* Fixed top bar & download */
+    .topbar{
+      position:fixed; left:50%; transform:translateX(-50%); top:18px; z-index:50;
+      width:min(1100px,92%); display:flex;justify-content:space-between;align-items:center;gap:12px;
+      pointer-events:none;
+    }
+    .topbar .left, .topbar .right{pointer-events:auto}
+    .download{
+      background:linear-gradient(90deg,var(--accent),#6ce0ff); color:#021018; padding:10px 14px; border-radius:10px; font-weight:800; text-decoration:none; border:1px solid rgba(255,255,255,0.06)
+    }
+
+    .slide-index{
+      color:var(--muted); font-weight:700; font-size:13px; display:flex;gap:8px;align-items:center;
+    }
+
+    footer.small{position:fixed;left:20px;bottom:18px;color:var(--muted);font-size:13px;z-index:40}
+
+    /* subtle slide in animations for content */
+    .anim { transform: translateY(12px); opacity:0; transition: transform 600ms ease, opacity 600ms ease; }
+    .anim.visible { transform:none; opacity:1; }
+
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">RA</div>
-        <div>
-          <div style="font-weight:800;color:#e7ffff">Reynard Adrian</div>
-          <div style="color:var(--muted);font-size:13px">Software Developer • Computer Science</div>
-        </div>
+  <div class="stage" id="stage">
+    <div class="topbar">
+      <div class="left" style="display:flex;gap:12px;align-items:center">
+        <div style="background:linear-gradient(135deg,var(--accent),#6ce0ff);width:42px;height:42px;border-radius:10px;display:grid;place-items:center;font-weight:800;color:#021018">RA</div>
+        <div style="color:#e7ffff;font-weight:800">Reynard Adrian</div>
+        <div class="slide-index" id="slideIndex" style="margin-left:10px">01 / 05</div>
       </div>
+      <div class="right" style="display:flex;gap:10px;align-items:center">
+        <a class="download" href="./CV.pdf" download>Download CV</a>
+      </div>
+    </div>
 
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+    <div class="slides" id="slides">
+      <!-- Slide 1: About -->
+      <section class="slide" data-index="0" id="slide-0" aria-label="About">
+        <div class="card" role="region" aria-labelledby="aboutTitle">
+          <div class="left">
+            <h1 id="aboutTitle">Hi, I'm Reynard Adrian</h1>
+            <div class="subtitle">Software Developer • Computer Science</div>
+            <p>
+              I am a programming enthusiast who has a passion for debugging and understanding the logic of code.
+              I have experience developing software, integrating AI models, and building game mechanics. I also
+              have hands-on experience assembling hardware and collaborating on machine learning research.
+            </p>
 
-    <main>
-      <section class="hero">
-        <div class="card about">
-          <div class="section-title">
-            <div>
-              <h1 class="title">Dark-mode Portfolio — Reynard Adrian</h1>
-              <div class="subtitle">Programming enthusiast focused on debugging, logic, and software development.</div>
-            </div>
-            <div class="small-muted">Jakarta, Indonesia</div>
-          </div>
-
-          <p>
-            I am a programming enthusiast who has a passion in debugging and understanding the logic of code.
-            I have experience developing software, integrating AI models, and building game mechanics. I also
-            have hands-on experience assembling hardware and collaborating on research projects in machine learning.
-          </p>
-
-          <div class="neon-line"></div>
-
-          <div style="display:flex;gap:18px;align-items:center;">
-            <div style="flex:1">
-              <div style="font-weight:700;margin-bottom:8px">Key Skills</div>
-              <div class="badges">
-                <div class="badge">C</div>
-                <div class="badge">C#</div>
-                <div class="badge">C++</div>
-                <div class="badge">Python</div>
-                <div class="badge">Java</div>
-                <div class="badge">Unity / GameDev</div>
-                <div class="badge">Machine Learning</div>
-                <div class="badge">Web Dev</div>
-              </div>
-            </div>
-
-            <div style="width:220px">
-              <div style="font-weight:700;margin-bottom:8px">Download CV</div>
-              <!-- Make sure to rename your uploaded CV to CV.pdf and place it next to this index.html -->
-              <a class="btn" href="./CV.pdf" download>Download CV (PDF)</a>
-              <div style="font-size:12px;color:var(--muted);margin-top:8px">Or preview below</div>
+            <div class="badges" aria-hidden="true">
+              <div class="badge">C</div>
+              <div class="badge">C#</div>
+              <div class="badge">C++</div>
+              <div class="badge">Python</div>
+              <div class="badge">Java</div>
+              <div class="badge">Unity</div>
+              <div class="badge">Machine Learning</div>
+              <div class="badge">Web Dev</div>
             </div>
           </div>
 
-          <div style="margin-top:16px">
-            <div class="section-title">
-              <div><strong style="color:#e7ffff">Selected Projects</strong></div>
-              <div class="muted">Team & Individual work — AI, Web, GameDev</div>
+          <aside>
+            <div class="avatar" aria-hidden="true">RA</div>
+            <div style="text-align:center;font-weight:800;color:#e7ffff">Reynard Adrian</div>
+            <div class="contact" style="margin-top:8px">
+              <div>Jakarta, Indonesia</div>
+              <a href="mailto:reynardadrian25@gmail.com" style="color:var(--muted);text-decoration:none;display:block;margin-top:6px">reynardadrian25@gmail.com</a>
+              <div style="color:var(--muted);margin-top:6px">+62 815-7072-877</div>
             </div>
 
-            <div class="projects" id="projects">
-              <article class="project">
-                <h4>SkillLink</h4>
-                <p>Job-matching website with advanced categorization; responsible for front-end + back-end features and responsive UI.</p>
-                <div class="meta">
-                  <span>Stack: HTML, CSS, JS, Backend</span>
-                  <a class="btn" href="#project-skilllink" style="padding:6px 10px;font-size:13px">Read</a>
-                </div>
-              </article>
-
-              <article class="project">
-                <h4>Astro-ACE</h4>
-                <p>Bullet-hell 2D shooter (Unity, C#) — implemented player shooting, bullet patterns and enemy spawning.</p>
-                <div class="meta">
-                  <span>Stack: Unity, C#</span>
-                  <a class="btn" href="#project-astro" style="padding:6px 10px;font-size:13px">Read</a>
-                </div>
-              </article>
-
-              <article class="project">
-                <h4>QuickTask</h4>
-                <p>Web platform that uses AI/NLP to suggest writing improvements; I worked on front-end and AI integration.</p>
-                <div class="meta">
-                  <span>Stack: Web, NLP</span>
-                  <a class="btn" href="#project-quicktask" style="padding:6px 10px;font-size:13px">Read</a>
-                </div>
-              </article>
-
-              <article class="project">
-                <h4>Signature Forgery Detection</h4>
-                <p>Implemented EGACNN and CNN-AE models to compare real vs fake signatures for fraud prevention research.</p>
-                <div class="meta">
-                  <span>Stack: PyTorch, CV</span>
-                  <a class="btn" href="#project-signature" style="padding:6px 10px;font-size:13px">Read</a>
-                </div>
-              </article>
-
+            <div class="cta" style="margin-top:18px">
+              <a class="btn" href="./Reynard-Portfolio.pdf" target="_blank">Open Portfolio (PDF)</a>
             </div>
-          </div>
-
-          <div id="project-skilllink" style="margin-top:18px">
-            <h3 style="margin:0 0 8px 0">SkillLink — details</h3>
-            <p class="muted">A job-categorization site: built responsive UI and implemented categorization and search. Learned team-based workflows and UI/UX tradeoffs.</p>
-          </div>
-
-          <div id="project-astro" style="margin-top:12px">
-            <h3 style="margin:0 0 8px 0">Astro-ACE — details</h3>
-            <p class="muted">Indie game: implemented shooting, enemy patterns, and optimization in Unity using C#.</p>
-          </div>
-
-          <div id="project-quicktask" style="margin-top:12px">
-            <h3 style="margin:0 0 8px 0">QuickTask — details</h3>
-            <p class="muted">Front-end + integration with an NLP model for contextual writing suggestions.</p>
-          </div>
-
-          <div id="project-signature" style="margin-top:12px">
-            <h3 style="margin:0 0 8px 0">Signature Forgery — details</h3>
-            <p class="muted">Implemented and compared EGACNN and CNN-AE models for signature forgery detection. Focus on model evaluation and reconstruction error analysis.</p>
-          </div>
-
+          </aside>
         </div>
+      </section>
 
-        <aside class="card profile">
-          <div class="avatar">RA</div>
-          <div style="font-weight:800;font-size:18px;color:#e7ffff">Reynard Adrian</div>
-          <div class="contact">
-            <div>Jakarta, Indonesia</div>
-            <a href="tel:+628157072877" style="color:var(--muted);">+62 815-7072-877</a>
-            <a href="mailto:reynardadrian25@gmail.com" style="color:var(--muted);">reynardadrian25@gmail.com</a>
-            <a href="#" style="color:var(--muted);">GitHub • replace-with-profile</a>
-            <a href="#" style="color:var(--muted);">LinkedIn • replace-with-profile</a>
+      <!-- Slide 2: Projects -->
+      <section class="slide" data-index="1" id="slide-1" aria-label="Projects">
+        <div class="card" role="region" aria-labelledby="projectsTitle">
+          <div style="grid-column:1/-1">
+            <h2 id="projectsTitle" style="margin:0;color:#e7ffff">Selected Projects</h2>
+            <div style="color:var(--muted);margin-top:6px">Team & Individual work — AI, Web, GameDev</div>
           </div>
 
-          <div class="cta">
-            <a class="btn" href="./Reynard-Portfolio.pdf" target="_blank" style="font-size:14px">Open Portfolio (PDF)</a>
-            <a class="btn" href="./CV.pdf" download style="font-size:14px">Download CV</a>
+          <div class="projects" style="margin-top:12px">
+            <article class="project">
+              <h4>SkillLink</h4>
+              <p>Job-matching website with advanced categorization; responsible for front-end & back-end features and responsive UI.</p>
+            </article>
+
+            <article class="project">
+              <h4>Astro-ACE</h4>
+              <p>Bullet-hell 2D shooter (Unity, C#) — implemented player shooting, bullet patterns and enemy spawning.</p>
+            </article>
+
+            <article class="project">
+              <h4>QuickTask</h4>
+              <p>Web platform using AI/NLP to suggest writing improvements; worked on front-end and AI integration.</p>
+            </article>
+
+            <article class="project">
+              <h4>Signature Forgery Detection</h4>
+              <p>Implemented EGACNN and CNN-AE models to compare real vs fake signatures for fraud prevention research.</p>
+            </article>
           </div>
 
-          <div style="margin-top:18px; text-align:left; width:100%; padding:0 16px;">
-            <div class="small-muted" style="margin-bottom:8px">Education</div>
-            <div style="font-weight:700">BINUS University</div>
-            <div class="muted">Bachelor of Computer Science (2023 – Present)</div>
+          <aside>
+            <div style="font-weight:700;color:#e7ffff">Project Highlights</div>
+            <div style="color:var(--muted);margin-top:8px">Focus on teamwork, model evaluation, front-end engineering and game mechanics.</div>
+          </aside>
+        </div>
+      </section>
 
-            <div style="margin-top:10px">
-              <div class="small-muted">Strengths</div>
-              <ul style="padding-left:18px;margin:6px 0;color:var(--muted)">
-                <li>Problem solving & critical thinking</li>
-                <li>Adaptive team player</li>
-                <li>Debugging & logic interpretation</li>
+      <!-- Slide 3: Education & Experience -->
+      <section class="slide" data-index="2" id="slide-2" aria-label="Education">
+        <div class="card" role="region" aria-labelledby="eduTitle">
+          <div>
+            <h2 id="eduTitle" style="margin:0;color:#e7ffff">Education & Experience</h2>
+            <div style="color:var(--muted);margin-top:6px">Academic background and selected activities</div>
+
+            <div style="margin-top:14px">
+              <h4 style="margin:0 0 6px 0">Education</h4>
+              <p class="muted" style="color:var(--muted);margin:0 0 8px 0"><strong>BINUS University</strong> — Bachelor of Computer Science (2023 – Present)</p>
+              <p class="muted" style="margin:0 0 8px 0"><strong>St. Angela Senior High School</strong> — Science Program (2020 – 2023)</p>
+            </div>
+
+            <div style="margin-top:12px">
+              <h4 style="margin:0 0 6px 0">Selected Experience</h4>
+              <ul style="color:var(--muted);padding-left:18px;margin-top:6px">
+                <li>SkillLink — job categorization website (front-end & back-end)</li>
+                <li>QuickTask — front-end + AI integration (NLP)</li>
+                <li>Astro-ACE — Unity 2D shooter (C#)</li>
+                <li>Signature Forgery Detection — EGACNN & CNN-AE</li>
               </ul>
             </div>
           </div>
-        </aside>
+
+          <aside>
+            <div style="font-weight:700;color:#e7ffff">Leadership & Volunteering</div>
+            <div style="color:var(--muted);margin-top:8px">SkillLink & QuickTask leadership roles; volunteer work on anti-corruption awareness.</div>
+          </aside>
+        </div>
       </section>
 
-      <section id="education" class="card">
-        <div class="section-title">
-          <div><strong style="color:#e7ffff">Education & Experience</strong></div>
-          <div class="muted">Academic background and selected activities</div>
-        </div>
-
-        <div class="grid-2">
+      <!-- Slide 4: Contact -->
+      <section class="slide" data-index="3" id="slide-3" aria-label="Contact">
+        <div class="card" role="region" aria-labelledby="contactTitle">
           <div>
-            <h4 style="margin:0 0 6px 0">Education</h4>
-            <p class="muted" style="margin:0 0 10px 0"><strong>BINUS University</strong> — Bachelor of Computer Science (2023 – Present)</p>
-            <p class="muted" style="margin:0 0 10px 0"><strong>St. Angela Senior High School</strong> — Science Program (2020 – 2023)</p>
+            <h2 id="contactTitle" style="margin:0;color:#e7ffff">Contact</h2>
+            <div style="color:var(--muted);margin-top:6px">Let's connect</div>
 
-            <h4 style="margin-top:12px;margin-bottom:6px">Selected Projects & Experience</h4>
-            <ul style="color:var(--muted);padding-left:18px;margin-top:6px">
-              <li>SkillLink — job categorization website (front-end & back-end)</li>
-              <li>QuickTask — front-end + AI integration (NLP)</li>
-              <li>Astro-ACE — Unity 2D shooter (C#)</li>
-              <li>Signature Forgery Detection — EGACNN & CNN-AE (research)</li>
-              <li>Social Media Virtual Assistant — AI chatbot for elderly (TTS/STT)</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 style="margin:0 0 6px 0">Leadership & Volunteer</h4>
-            <p class="muted" style="margin:0">SkillLink & QuickTask leadership roles: task assignment, coordinating team delivery under deadlines.</p>
-
-            <div style="margin-top:12px">
-              <h4 style="margin:0 0 6px 0">Technical Skills</h4>
-              <div class="chips">
-                <div class="badge">C / C# / C++</div>
-                <div class="badge">Python</div>
-                <div class="badge">Java</div>
-                <div class="badge">Unity</div>
-                <div class="badge">Machine Learning</div>
-              </div>
+            <div style="margin-top:14px;max-width:640px">
+              <form id="contactForm" style="display:flex;flex-direction:column;gap:10px;background:transparent">
+                <input id="name" name="name" type="text" placeholder="Your name" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
+                <input id="email" name="email" type="email" placeholder="you@example.com" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
+                <textarea id="message" name="message" rows="4" placeholder="Say hi or propose a collaboration..." style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"></textarea>
+                <div style="display:flex;justify-content:flex-end"><button class="btn" type="submit">Send Message</button></div>
+                <div id="formStatus" style="color:var(--muted);font-size:13px"></div>
+              </form>
             </div>
           </div>
+
+          <aside>
+            <div style="font-weight:700;color:#e7ffff">Direct</div>
+            <div style="color:var(--muted);margin-top:8px">Email: reynardadrian25@gmail.com</div>
+            <div style="color:var(--muted);margin-top:6px">Phone: +62 815-7072-877</div>
+            <div style="margin-top:14px"><a class="btn" href="./Reynard-Portfolio.pdf" target="_blank">Open Portfolio (PDF)</a></div>
+          </aside>
         </div>
       </section>
 
-      <section id="contact" class="card">
-        <div class="section-title">
-          <div><strong style="color:#e7ffff">Contact</strong></div>
-          <div class="muted">Let's connect</div>
-        </div>
+      <!-- Slide 5: CV Preview -->
+      <section class="slide" data-index="4" id="slide-4" aria-label="CV">
+        <div class="card" role="region" aria-labelledby="cvTitle" style="grid-template-columns:1fr;display:flex;flex-direction:column">
+          <h2 id="cvTitle" style="margin:0 0 6px 0;color:#e7ffff">CV Preview</h2>
+          <div style="color:var(--muted);margin-bottom:12px">Quick view of your uploaded CV — use the download button at top to save it.</div>
 
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <div style="flex:1;min-width:260px">
-            <form id="contactForm" class="card" style="padding:14px;background:transparent;border:1px dashed rgba(255,255,255,0.02)">
-              <label class="muted" for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
-
-              <label class="muted" for="email" style="margin-top:12px;display:block">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
-
-              <label class="muted" for="message" style="margin-top:12px;display:block">Message</label>
-              <textarea id="message" name="message" rows="4" placeholder="Say hi or propose a collaboration..." style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"></textarea>
-
-              <div style="margin-top:10px; text-align:right">
-                <button type="submit" class="btn">Send Message</button>
-              </div>
-              <div id="formStatus" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
-            </form>
-          </div>
-
-          <div style="flex-basis:320px;min-width:260px">
-            <div style="font-weight:700">Direct</div>
-            <div class="muted" style="margin-top:6px">Email: reynardadrian25@gmail.com</div>
-            <div class="muted">Phone: +62 815-7072-877</div>
-
-            <div style="margin-top:12px">
-              <div style="font-weight:700">Portfolio PDF</div>
-              <div style="color:var(--muted);margin-top:6px">Open the portfolio PDF you uploaded:</div>
-              <a class="btn" href="./Reynard-Portfolio.pdf" target="_blank" style="margin-top:10px;display:inline-block">Open Portfolio (PDF)</a>
-            </div>
+          <div class="pdf-embed" style="flex:1">
+            <iframe src="./CV.pdf" style="width:100%;height:100%;border:0"></iframe>
           </div>
         </div>
       </section>
 
-      <section class="card">
-        <div class="section-title">
-          <div><strong style="color:#e7ffff">CV Preview</strong></div>
-          <div class="muted">Quick view of your uploaded CV</div>
-        </div>
+    </div> <!-- slides -->
+  </div> <!-- stage -->
 
-        <div class="pdf-embed">
-          <!-- If browser supports embedded PDFs, it will display. Otherwise the link will be used. -->
-          <iframe src="./CV.pdf" style="width:100%;height:100%;border:0"></iframe>
-        </div>
-      </section>
+  <!-- right side dots -->
+  <div class="dots" role="navigation" aria-label="Slide navigation" id="dots"></div>
 
-      <footer>
-        © <span id="year"></span> Reynard Adrian — Built with ❤️ • Dark tech portfolio template
-      </footer>
-    </main>
-  </div>
+  <footer class="small">© <span id="year"></span> Reynard Adrian</footer>
 
   <script>
-    // small interactivity: smooth scroll + fake form send
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Slide control and navigation (wheel, touch, keyboard)
+    (function(){
+      const slidesEl = document.getElementById('slides');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const dotsContainer = document.getElementById('dots');
+      const slideIndexEl = document.getElementById('slideIndex');
+      const total = slides.length;
+      let current = 0;
+      let isAnimating = false;
+      let touchStartY = 0;
+      let touchEndY = 0;
+      document.getElementById('year').textContent = new Date().getFullYear();
 
-    // smooth scroll for nav links
-    document.querySelectorAll('nav a').forEach(a=>{
-      a.addEventListener('click', e=>{
+      // Create dots
+      slides.forEach((s, i) => {
+        const d = document.createElement('div');
+        d.className = 'dot' + (i===0 ? ' active' : '');
+        d.setAttribute('data-index', i);
+        d.setAttribute('role','button');
+        d.setAttribute('aria-label','Go to slide ' + (i+1));
+        d.tabIndex = 0;
+        d.addEventListener('click', ()=> goTo(i));
+        d.addEventListener('keydown', e => { if(e.key === 'Enter') goTo(i); });
+        dotsContainer.appendChild(d);
+      });
+
+      function updateDots(){
+        dotsContainer.querySelectorAll('.dot').forEach((d, idx) => {
+          d.classList.toggle('active', idx === current);
+        });
+        const pad = (n) => n < 10 ? '0' + n : '' + n;
+        slideIndexEl.textContent = pad(current+1) + ' / ' + pad(total);
+      }
+
+      // animate content inside active slide (simple reveal)
+      function revealSlideContent(idx){
+        const elems = slides[idx].querySelectorAll('.anim');
+        elems.forEach((el, i) => {
+          el.classList.remove('visible');
+          setTimeout(()=> el.classList.add('visible'), 80 * i);
+        });
+      }
+
+      function goTo(index){
+        if(isAnimating || index === current) return;
+        if(index < 0) index = 0;
+        if(index >= total) index = total - 1;
+        isAnimating = true;
+        current = index;
+        slidesEl.style.transform = 'translateY(' + (-current * 100) + 'vh)';
+        updateDots();
+        // remove anim classes then reveal
+        setTimeout(()=> {
+          // allow some buffer
+          isAnimating = false;
+          // call reveal (if slide has .anim)
+          revealSlideContent(current);
+        }, 820);
+      }
+
+      // wheel handling with debounce
+      let wheelTimeout = null;
+      function onWheel(e){
+        if(wheelTimeout) return;
+        const delta = e.deltaY;
+        if(delta > 10) goTo(current + 1);
+        else if(delta < -10) goTo(current - 1);
+        wheelTimeout = setTimeout(()=> { wheelTimeout = null }, 380);
+      }
+
+      // touch handling (mobile)
+      function onTouchStart(e){
+        touchStartY = e.touches ? e.touches[0].clientY : e.clientY;
+      }
+      function onTouchMove(e){
+        touchEndY = e.touches ? e.touches[0].clientY : e.clientY;
+      }
+      function onTouchEnd(e){
+        const diff = touchStartY - touchEndY;
+        if(Math.abs(diff) > 40){
+          if(diff > 0) goTo(current + 1); else goTo(current - 1);
+        }
+        touchStartY = touchEndY = 0;
+      }
+
+      // keyboard navigation
+      function onKey(e){
+        if(e.key === 'ArrowDown' || e.key === 'PageDown') goTo(current + 1);
+        if(e.key === 'ArrowUp' || e.key === 'PageUp') goTo(current - 1);
+        if(e.key === 'Home') goTo(0);
+        if(e.key === 'End') goTo(total - 1);
+      }
+
+      // Add event listeners
+      window.addEventListener('wheel', onWheel, { passive: true });
+      window.addEventListener('touchstart', onTouchStart, { passive: true });
+      window.addEventListener('touchmove', onTouchMove, { passive: true });
+      window.addEventListener('touchend', onTouchEnd, { passive: true });
+      window.addEventListener('keydown', onKey);
+
+      // init: reveal first slide content if any .anim
+      updateDots();
+      revealSlideContent(0);
+
+      // Add .anim to some elements for nice entrance
+      document.querySelectorAll('.card > .left, .card aside, .project').forEach(el => el.classList.add('anim'));
+
+      // Small accessibility: focus traps to allow keyboard interaction on form elements
+      const form = document.getElementById('contactForm');
+      form && form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-      })
-    });
+        const status = document.getElementById('formStatus');
+        status.textContent = "Thanks — message composed locally. Connect this form to an email/API to send messages.";
+        setTimeout(()=> status.textContent = '', 6000);
+      });
 
-    // fake contact form behavior (replace with real endpoint if you add one)
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('formStatus');
-    form.addEventListener('submit', e=>{
-      e.preventDefault();
-      status.textContent = "Thanks — message composed locally. To actually send messages, connect this form to an email/API (instructions in README).";
-      status.style.color = "var(--muted)";
-      setTimeout(()=>status.textContent='',6000);
-    });
+    })();
   </script>
 </body>
 </html>
