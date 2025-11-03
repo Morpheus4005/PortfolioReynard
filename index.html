@@ -6,7 +6,7 @@
 <title>Reynard Adrian — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
+:root{
   --bg:#07101a; --muted:#9fb6bf; --accent:#00f5ff;
   font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
 }
@@ -47,7 +47,7 @@ body{overflow:hidden}
 .badge{display:inline-block;padding:8px 10px;margin:4px;border-radius:999px;background:rgba(255,255,255,.02);color:var(--muted);font-weight:600}
 aside{border-left:1px solid rgba(255,255,255,.03);padding-left:18px}
 
-/* Carousel: consistent size with contained images */
+/* Carousel */
 .carousel{
   position:relative;
   overflow:hidden;
@@ -88,7 +88,6 @@ aside{border-left:1px solid rgba(255,255,255,.03);padding-left:18px}
 .carousel .prev{left:14px}.carousel .next{right:14px}
 .carousel button:hover{background:rgba(0,0,0,0.6)}
 
-/* Single project images */
 .project-image{
   display:block;
   width:100%;
@@ -122,7 +121,7 @@ aside{border-left:1px solid rgba(255,255,255,.03);padding-left:18px}
 
     <div class="slides" id="slides">
 
-      <!-- Slide 1: About -->
+      <!-- Slide 1 -->
       <section class="slide" data-index="0">
         <div class="card">
           <div class="left">
@@ -144,64 +143,83 @@ aside{border-left:1px solid rgba(255,255,255,.03);padding-left:18px}
         </div>
       </section>
 
-      <!-- Slide 2: SkillLink -->
+      <!-- SkillLink -->
       <section class="slide" data-index="1">
         <div class="card">
           <div class="left">
             <h2>SkillLink</h2>
-            <p>SkillLink is a website that helps people find jobs that match their needs and abilities. With an advanced categorization system, users can easily search for jobs based on field, location, and level of experience.</p>
-            <p>I contributed to both the back-end and front-end development, focusing on building a responsive interface and ensuring smooth functionality.</p>
             <div class="carousel" data-images="skilllink-1.png,skilllink-2.png,skilllink-3.png"></div>
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">Front-end & Back-end • Team Project</div>
           </div>
+          <aside>
+            <div style="font-weight:700;color:#e7ffff">Web Development</div>
+            <div style="color:#9fb6bf;margin-top:8px">Front-end & Back-end • Team Project</div>
+            <p style="color:#cfeef2;margin-top:12px">SkillLink is a website that helps people find jobs that match their needs and abilities. With an advanced categorization system, users can easily search for jobs based on categories such as field, location, and level of experience.</p>
+            <p style="color:#cfeef2;margin-top:12px">I contributed to both the back-end and front-end development, focusing on building a responsive interface and ensuring smooth functionality of the job categorization features. This project improved my problem-solving skills and teamwork.</p>
+          </aside>
         </div>
       </section>
 
-      <!-- Slide 3: Astro-ACE -->
+      <!-- Astro-ACE -->
       <section class="slide" data-index="2">
         <div class="card">
           <div class="left">
             <h2>Astro-ACE</h2>
-            <p>Astro-ACE is a bullet-hell game inspired by the Touhou Project series. I implemented player shooting, bullet patterns, and enemy spawning, while troubleshooting prefab and script issues.</p>
             <div class="carousel" data-images="astro-ace-1.png,astro-ace-2.png,astro-ace-3.png,astro-ace-4.png,astro-ace-5.png,astro-ace-6.png"></div>
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">Unity • C# • Game Development</div>
           </div>
+          <aside>
+            <div style="font-weight:700;color:#e7ffff">Game Development</div>
+            <div style="color:#9fb6bf;margin-top:8px">Unity • C#</div>
+            <p style="color:#cfeef2;margin-top:12px">Astro-ACE is a bullet-hell game inspired by the Touhou Project series, developed for an indie game competition. I implemented player shooting, bullet patterns, and enemy spawning while troubleshooting script and prefab issues.</p>
+            <p style="color:#cfeef2;margin-top:12px">This project enhanced my Unity and C# programming skills, teamwork, and gave me experience in indie game development.</p>
+          </aside>
         </div>
       </section>
 
-      <!-- Slide 4: QuickTask -->
+      <!-- QuickTask -->
       <section class="slide" data-index="3">
         <div class="card">
           <div class="left">
             <h2>QuickTask</h2>
-            <p>QuickTask is a web-based AI writing assistant using NLP for contextual suggestions. I built the front-end interface and integrated the AI model.</p>
             <img src="quicktask-1.png" alt="QuickTask Screenshot" class="project-image">
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">AI • NLP • Web Development</div>
           </div>
+          <aside>
+            <div style="font-weight:700;color:#e7ffff">AI & Web App</div>
+            <div style="color:#9fb6bf;margin-top:8px">Front-end • NLP Integration</div>
+            <p style="color:#cfeef2;margin-top:12px">QuickTask is a web-based platform designed to help users write more easily and efficiently. Using AI and NLP, it provides writing suggestions relevant to the user’s context and style — academic, business, or creative.</p>
+            <p style="color:#cfeef2;margin-top:12px">I developed the front-end and integrated the AI model, honing my skills in web development and AI integration.</p>
+          </aside>
         </div>
       </section>
 
-      <!-- Slide 5: Social Media Virtual Assistant -->
+      <!-- Social Media Virtual Assistant -->
       <section class="slide" data-index="4">
         <div class="card">
           <div class="left">
             <h2>Social Media Virtual Assistant</h2>
-            <p>AI chatbot app helping elderly users with WhatsApp via speech-to-text and text-to-speech. I integrated the AI logic for the chatbot system.</p>
             <div class="carousel" data-images="vsocial-1.png,vsocial-2.png,vsocial-3.png"></div>
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">Text-to-Speech • Speech-to-Text • AI Integration</div>
           </div>
+          <aside>
+            <div style="font-weight:700;color:#e7ffff">AI & Mobile Project</div>
+            <div style="color:#9fb6bf;margin-top:8px">Text-to-Speech • Speech-to-Text</div>
+            <p style="color:#cfeef2;margin-top:12px">An AI-powered chatbot application designed to assist the elderly in using WhatsApp more easily. The app features interactive chat bubbles with text-to-speech and speech-to-text integration.</p>
+            <p style="color:#cfeef2;margin-top:12px">I integrated the AI chatbot functionality, improving accessibility and enhancing my technical and critical thinking skills.</p>
+          </aside>
         </div>
       </section>
 
-      <!-- Slide 6: Signature Forgery -->
+      <!-- Signature Forgery Detection -->
       <section class="slide" data-index="5">
         <div class="card">
           <div class="left">
             <h2>Signature Forgery Detection Using AI</h2>
-            <p>Compared EGACNN and CNN-AE models for detecting forged signatures to help prevent fraud in business contexts.</p>
             <img src="signature-1.png" alt="Signature Forgery Screenshot" class="project-image">
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">EGACNN • CNN-AE • AI Research</div>
           </div>
+          <aside>
+            <div style="font-weight:700;color:#e7ffff">AI Research</div>
+            <div style="color:#9fb6bf;margin-top:8px">EGACNN • CNN-AE</div>
+            <p style="color:#cfeef2;margin-top:12px">This research compares real and fake signatures using EGACNN and CNN-AE models to prevent fraud. The study aims to identify which AI model performs best for forgery detection.</p>
+            <p style="color:#cfeef2;margin-top:12px">Through this project, I gained valuable knowledge in AI model evaluation and real-world fraud prevention applications.</p>
+          </aside>
         </div>
       </section>
 
@@ -225,7 +243,6 @@ slides.forEach((_,i)=>{
 function update(){dots.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===current));slideIndex.textContent=`0${current+1} / 0${slides.length}`;}
 function goTo(i){if(isAnimating||i===current)return;if(i<0)i=0;if(i>=slides.length)i=slides.length-1;isAnimating=true;current=i;slidesEl.style.transform=`translateY(${-i*100}vh)`;setTimeout(()=>isAnimating=false,700);update();}
 window.addEventListener('wheel',e=>{if(isAnimating)return;e.deltaY>0?goTo(current+1):goTo(current-1);});
-
 document.querySelectorAll('.carousel').forEach(c=>{
   const imgs=c.dataset.images.split(',').map(s=>s.trim());
   const wrap=document.createElement('div');
@@ -247,5 +264,4 @@ update();
 </script>
 </body>
 </html>
-
 
