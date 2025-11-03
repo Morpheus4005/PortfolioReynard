@@ -4,12 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Reynard Adrian — Portfolio</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg:#07101a;
-      --card:#0b1620;
       --muted:#9fb6bf;
       --accent:#00f5ff;
       font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
@@ -40,13 +39,44 @@
     .left p{margin-bottom:12px;color:#cfeef2;line-height:1.5}
     .badge{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.04);color:var(--muted);font-weight:600;margin-right:6px;font-size:13px}
 
-    /* Carousel */
-    .carousel{position:relative;overflow:hidden;border-radius:16px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;}
-    .carousel .images{display:flex;transition:transform .6s ease;align-items:center;}
-    .carousel img{width:100%;height:auto;max-height:70vh;object-fit:contain;border-radius:16px;background:#000;}
-    .carousel button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);border:none;color:white;padding:8px 12px;cursor:pointer;border-radius:8px;}
-    .carousel .prev{left:10px}.carousel .next{right:10px}
-    .carousel button:hover{background:rgba(0,0,0,0.6)}
+    /* Carousel - images fit perfectly */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 420px; /* consistent visual square */
+    }
+    .carousel .images {
+      display: flex;
+      transition: transform .6s ease;
+      align-items: center;
+      height: 100%;
+    }
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* key fix: fits any image */
+      background: #000;
+      border-radius: 16px;
+    }
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .carousel .prev { left: 10px; }
+    .carousel .next { right: 10px; }
+    .carousel button:hover { background: rgba(0,0,0,0.6); }
 
     /* Dots navigation */
     .dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:50;}
@@ -56,8 +86,6 @@
     .topbar{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:min(1100px,92%);display:flex;justify-content:space-between;align-items:center;z-index:60;}
     .download{background:linear-gradient(90deg,var(--accent),#6ce0ff);color:#021018;padding:10px 14px;border-radius:10px;font-weight:800;text-decoration:none;}
     .slide-index{color:var(--muted);font-weight:700;font-size:13px;}
-
-    @media(max-width:900px){.slide{padding:24px}}
   </style>
 </head>
 <body>
@@ -103,23 +131,12 @@
         <div class="card">
           <div class="left">
             <h2>SkillLink</h2>
-            <p>
-              SkillLink is a website that helps people find jobs that match their needs and abilities.
-              With an advanced categorization system, users can easily search for jobs based on
-              categories such as field, location, and level of experience.
-            </p>
-            <p>
-              I contributed to both the back-end and front-end development, focusing on building a
-              responsive interface and ensuring smooth functionality of the job categorization
-              features. This project gave me insights on how to strengthen my problem-solving skills
-              and collaborate effectively with a team.
-            </p>
+            <p>SkillLink is a website that helps people find jobs that match their needs and abilities. With an advanced categorization system, users can easily search for jobs based on categories such as field, location, and level of experience.</p>
+            <p>I contributed to both the back-end and front-end development, focusing on building a responsive interface and ensuring smooth functionality of the job categorization features. This project gave me insights on how to strengthen my problem-solving skills and collaborate effectively with a team.</p>
           </div>
           <div>
             <div class="carousel" data-images="skilllink-1.png,skilllink-2.png,skilllink-3.png"></div>
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">
-              Front-end & Back-end • Team Project
-            </div>
+            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">Front-end & Back-end • Team Project</div>
           </div>
         </div>
       </section>
@@ -129,23 +146,12 @@
         <div class="card">
           <div class="left">
             <h2>Astro-ACE</h2>
-            <p>
-              Astro-ACE is a bullet-hell game inspired by the Touhou Project series, developed with my
-              group for an indie game competition. I contributed by implementing core gameplay
-              mechanics such as player shooting, bullet patterns, and enemy spawning, while also
-              troubleshooting script and prefab issues.
-            </p>
-            <p>
-              This project enhanced my Unity and C# programming skills, improved my teamwork,
-              and gave me experience in indie game development.
-            </p>
+            <p>Astro-ACE is a bullet-hell game inspired by the Touhou Project series, developed with my group for an indie game competition. I contributed by implementing core gameplay mechanics such as player shooting, bullet patterns, and enemy spawning, while also troubleshooting script and prefab issues.</p>
+            <p>This project enhanced my Unity and C# programming skills, improved my teamwork, and gave me experience in indie game development.</p>
           </div>
           <div>
-            <div class="carousel"
-              data-images="astro-ace-1.png,astro-ace-2.png,astro-ace-3.png,astro-ace-4.png,astro-ace-5.png,astro-ace-6.png"></div>
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">
-              Unity • C# • Game Development
-            </div>
+            <div class="carousel" data-images="astro-ace-1.png,astro-ace-2.png,astro-ace-3.png,astro-ace-4.png,astro-ace-5.png,astro-ace-6.png"></div>
+            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">Unity • C# • Game Development</div>
           </div>
         </div>
       </section>
@@ -155,24 +161,12 @@
         <div class="card">
           <div class="left">
             <h2>QuickTask</h2>
-            <p>
-              QuickTask is a web-based platform designed to help users write more easily and
-              efficiently. QuickTask uses AI technology to provide writing suggestions that are relevant
-              to the user’s needs and context. With an NLP-based analysis system, users can receive
-              recommendations for words and phrases that match their writing style, whether for
-              academic, business, or creative purposes.
-            </p>
-            <p>
-              My contribution to this project included developing the front-end interface and
-              integrating the AI model. This project gave me experience on how to hone my skills in
-              web development and AI integration.
-            </p>
+            <p>QuickTask is a web-based platform designed to help users write more easily and efficiently. QuickTask uses AI technology to provide writing suggestions that are relevant to the user’s needs and context. With an NLP-based analysis system, users can receive recommendations for words and phrases that match their writing style, whether for academic, business, or creative purposes.</p>
+            <p>My contribution to this project included developing the front-end interface and integrating the AI model. This project gave me experience on how to hone my skills in web development and AI integration.</p>
           </div>
           <div>
-            <img src="quicktask-1.png" alt="QuickTask Screenshot" style="width:100%;border-radius:16px;object-fit:contain;background:#000;">
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">
-              AI • NLP • Web Development
-            </div>
+            <img src="quicktask-1.png" alt="QuickTask Screenshot" style="width:100%;height:420px;object-fit:contain;border-radius:16px;background:#000;">
+            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">AI • NLP • Web Development</div>
           </div>
         </div>
       </section>
@@ -182,24 +176,12 @@
         <div class="card">
           <div class="left">
             <h2>Social Media Virtual Assistant</h2>
-            <p>
-              The product me and my group developed is an AI-powered chatbot application designed
-              to assist the elderly in using WhatsApp more easily. The application works as an overlay
-              with interactive chat bubbles that provide two key features: text-to-speech and
-              speech-to-text.
-            </p>
-            <p>
-              My role in this project was integrating the AI for the chatbot to work. This project aims to
-              make social media more accessible for older adults. Through this experience, I found out
-              that integrating an AI was harder than I thought, but it greatly improved my technical and
-              critical-thinking skills.
-            </p>
+            <p>The product me and my group developed is an AI-powered chatbot application designed to assist the elderly in using WhatsApp more easily. The application works as an overlay with interactive chat bubbles that provide two key features: text-to-speech and speech-to-text.</p>
+            <p>My role in this project was integrating the AI for the chatbot to work. This project aims to make social media more accessible for older adults. Through this experience, I found out that integrating an AI was harder than I thought, but it greatly improved my technical and critical-thinking skills.</p>
           </div>
           <div>
             <div class="carousel" data-images="vsocial-1.png,vsocial-2.png,vsocial-3.png"></div>
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">
-              Text-to-Speech • Speech-to-Text • AI Integration
-            </div>
+            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">Text-to-Speech • Speech-to-Text • AI Integration</div>
           </div>
         </div>
       </section>
@@ -209,21 +191,12 @@
         <div class="card">
           <div class="left">
             <h2>Signature Forgery Detection Using AI</h2>
-            <p>
-              This research focuses on the comparison between real and fake signatures. In this
-              project, I implemented the EGACNN model and CNN-AE model. The goal of this study is
-              to help prevent fraud, particularly signature forgery in business contexts.
-            </p>
-            <p>
-              Through this research, I gained valuable knowledge and insights into identifying which AI
-              model performs best for forgery detection.
-            </p>
+            <p>This research focuses on the comparison between real and fake signatures. In this project, I implemented the EGACNN model and CNN-AE model. The goal of this study is to help prevent fraud, particularly signature forgery in business contexts.</p>
+            <p>Through this research, I gained valuable knowledge and insights into identifying which AI model performs best for forgery detection.</p>
           </div>
           <div>
-            <img src="signature-1.png" alt="Signature Forgery Screenshot" style="width:100%;border-radius:16px;object-fit:contain;background:#000;">
-            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">
-              EGACNN • CNN-AE • AI Research
-            </div>
+            <img src="signature-1.png" alt="Signature Forgery Screenshot" style="width:100%;height:420px;object-fit:contain;border-radius:16px;background:#000;">
+            <div style="color:#9fb6bf;margin-top:8px;text-align:center;font-weight:600">EGACNN • CNN-AE • AI Research</div>
           </div>
         </div>
       </section>
@@ -240,7 +213,6 @@
       const slideIndexEl=document.getElementById('slideIndex');
       const total=slides.length;
       let current=0,isAnimating=false;
-
       slides.forEach((_,i)=>{
         const d=document.createElement('div');
         d.className='dot'+(i===0?' active':'');
@@ -264,7 +236,7 @@
         e.deltaY>0?goTo(current+1):goTo(current-1);
       });
 
-      // Carousel auto-slide
+      // Carousel auto-slide (images fit)
       document.querySelectorAll('.carousel').forEach(c=>{
         const imgs=c.dataset.images.split(','),wrap=document.createElement('div');
         wrap.className='images';
