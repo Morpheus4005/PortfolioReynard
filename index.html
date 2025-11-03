@@ -6,6 +6,7 @@
 <title>Reynard Adrian — Portfolio</title>
 <meta name="description" content="Reynard Adrian — Interactive Portfolio and CV">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --bg:#07101a;--muted:#9fb6bf;--accent:#00f5ff;
@@ -22,7 +23,7 @@ body{overflow:hidden}
 .slides{transition:transform .7s cubic-bezier(.2,.9,.2,1)}
 .slide{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;padding:48px}
 .card{
-  width:min(1100px,92%);height:min(720px,86%);border-radius:16px;padding:28px;
+  width:min(1100px,92%);height:min(760px,90%);border-radius:16px;padding:28px;
   background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));
   box-shadow:0 18px 60px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.03);
   display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
@@ -33,13 +34,59 @@ body{overflow:hidden}
 aside{border-left:1px solid rgba(255,255,255,.03);padding-left:18px}
 .btn{background:linear-gradient(90deg,rgba(0,245,255,.08),rgba(108,224,255,.06));color:var(--accent);
   font-weight:700;padding:10px 14px;border-radius:12px;text-decoration:none;border:1px solid rgba(0,245,255,.12)}
-.carousel{position:relative;overflow:hidden;border-radius:12px;margin-top:12px}
-.carousel img{width:100%;height:380px;object-fit:cover;border-radius:12px}
-.carousel .images{display:flex;transition:transform .6s ease}
-.carousel button{position:absolute;top:50%;transform:translateY(-50%);
-  background:rgba(0,0,0,.4);border:none;color:white;padding:8px 12px;cursor:pointer;border-radius:8px}
-.carousel button:hover{background:rgba(0,0,0,.6)}
-.carousel .prev{left:10px}.carousel .next{right:10px}
+
+/* --- Enlarged Responsive Carousel --- */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  margin-top: 16px;
+  width: 100%;
+  height: clamp(320px, 65vh, 640px);
+  background: rgba(255,255,255,0.02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel .images {
+  display: flex;
+  height: 100%;
+  transition: transform .6s ease;
+}
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #000;
+}
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 10px;
+  z-index: 10;
+}
+.carousel button:hover { background: rgba(0,0,0,0.6); }
+.carousel .prev { left: 14px; }
+.carousel .next { right: 14px; }
+
+/* --- Responsive single images --- */
+.project-image {
+  width: 100%;
+  height: clamp(320px, 65vh, 640px);
+  object-fit: contain;
+  border-radius: 16px;
+  margin-top: 16px;
+  background: #000;
+}
+
+/* Navigation dots, topbar, footer */
 .dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);
   display:flex;flex-direction:column;gap:10px;z-index:40}
 .dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.06);
@@ -53,6 +100,7 @@ footer.small{position:fixed;left:20px;bottom:18px;color:var(--muted);font-size:1
 .pdf-embed{width:100%;height:100%;border-radius:12px;overflow:hidden;background:#061118;border:1px solid rgba(255,255,255,.02)}
 </style>
 </head>
+
 <body>
 <div class="stage">
   <div class="topbar">
@@ -65,6 +113,7 @@ footer.small{position:fixed;left:20px;bottom:18px;color:var(--muted);font-size:1
   </div>
 
   <div class="slides" id="slides">
+
     <!-- About -->
     <section class="slide">
       <div class="card">
@@ -117,7 +166,7 @@ footer.small{position:fixed;left:20px;bottom:18px;color:var(--muted);font-size:1
         <div class="left">
           <h2>QuickTask</h2>
           <p>AI-powered writing assistant using NLP for word and phrase suggestions. Built front-end and AI integration.</p>
-          <img src="quicktask-1.png" alt="QuickTask Screenshot" style="width:100%;border-radius:12px;margin-top:12px">
+          <img src="quicktask-1.png" alt="QuickTask Screenshot" class="project-image">
         </div>
         <aside><div style="font-weight:700;color:#e7ffff">AI & Web App</div></aside>
       </div>
@@ -141,7 +190,7 @@ footer.small{position:fixed;left:20px;bottom:18px;color:var(--muted);font-size:1
         <div class="left">
           <h2>Signature Forgery Detection Using AI</h2>
           <p>Compared EGACNN and CNN-AE models for detecting forged signatures to aid fraud prevention.</p>
-          <img src="signature-1.png" alt="Signature Forgery Screenshot" style="width:100%;border-radius:12px;margin-top:12px">
+          <img src="signature-1.png" alt="Signature Forgery Screenshot" class="project-image">
         </div>
         <aside><div style="font-weight:700;color:#e7ffff">AI Research</div></aside>
       </div>
@@ -155,6 +204,7 @@ footer.small{position:fixed;left:20px;bottom:18px;color:var(--muted);font-size:1
         <div class="pdf-embed"><iframe src="./CV.pdf" style="width:100%;height:100%;border:0"></iframe></div>
       </div>
     </section>
+
   </div>
 </div>
 
@@ -186,15 +236,24 @@ if(e.key=='ArrowUp'||e.key=='PageUp')go(cur-1);});
 // Carousels with auto-slide
 document.querySelectorAll('.carousel').forEach(c=>{
   const imgs=c.dataset.images.split(','),wrap=document.createElement('div');
-  wrap.className='images';imgs.forEach(s=>{const i=document.createElement('img');i.src=s.trim();wrap.appendChild(i);});
-  c.appendChild(wrap);let idx=0;
+  wrap.className='images';
+  imgs.forEach(s=>{
+    const i=document.createElement('img');
+    i.src=s.trim();
+    wrap.appendChild(i);
+  });
+  c.appendChild(wrap);
+  let idx=0;
   if(imgs.length>1){
-    const p=document.createElement('button');p.textContent='<';p.className='prev';
-    const n=document.createElement('button');n.textContent='>';n.className='next';
-    c.append(p,n);p.onclick=()=>show(idx-1);n.onclick=()=>show(idx+1);
+    const p=document.createElement('button');
+    p.textContent='<'; p.className='prev';
+    const n=document.createElement('button');
+    n.textContent='>'; n.className='next';
+    c.append(p,n);
+    p.onclick=()=>show(idx-1);
+    n.onclick=()=>show(idx+1);
   }
   function show(i){if(i<0)i=imgs.length-1;if(i>=imgs.length)i=0;idx=i;wrap.style.transform='translateX('+(-idx*100)+'%)';}
-  // auto-slide
   let t=setInterval(()=>show(idx+1),3000);
   c.addEventListener('mouseenter',()=>clearInterval(t));
   c.addEventListener('mouseleave',()=>t=setInterval(()=>show(idx+1),3000));
