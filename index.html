@@ -78,12 +78,29 @@ aside{border-left:1px solid rgba(255,255,255,.03);padding-left:18px}
 
 /* --- Responsive single images --- */
 .project-image {
+  display: block;
   width: 100%;
-  height: clamp(320px, 65vh, 640px);
+  max-height: 75vh;
   object-fit: contain;
   border-radius: 16px;
   margin-top: 16px;
   background: #000;
+}
+
+/* Portrait image adjustment */
+@media (min-aspect-ratio: 3/4) {
+  .project-image {
+    object-fit: contain;
+  }
+}
+@media (max-aspect-ratio: 3/4) {
+  .project-image {
+    width: auto;
+    height: 80vh;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+  }
 }
 
 /* Navigation dots, topbar, footer */
