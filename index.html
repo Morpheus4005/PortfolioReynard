@@ -57,31 +57,35 @@ body{overflow:hidden}
 }
 
 
-/* --- Enlarged Responsive Carousel --- */
+/* --- Responsive Carousel (auto-height, centered images) --- */
 .carousel {
   position: relative;
   overflow: hidden;
   border-radius: 16px;
   margin-top: 16px;
   width: 100%;
-  height: clamp(320px, 65vh, 640px);
   background: rgba(255,255,255,0.02);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .carousel .images {
   display: flex;
-  height: 100%;
   transition: transform .6s ease;
+  align-items: center;
 }
+
 .carousel img {
   width: 100%;
-  height: 100%;
+  height: auto;                /* auto height to fit any aspect ratio */
+  max-height: 70vh;            /* don’t exceed viewport */
   object-fit: contain;
   border-radius: 16px;
   background: #000;
+  margin: 0 auto;
 }
+
 .carousel button {
   position: absolute;
   top: 50%;
@@ -97,6 +101,7 @@ body{overflow:hidden}
 .carousel button:hover { background: rgba(0,0,0,0.6); }
 .carousel .prev { left: 14px; }
 .carousel .next { right: 14px; }
+
 
 /* --- Responsive single images --- */
 .project-image {
