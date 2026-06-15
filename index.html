@@ -1,271 +1,923 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Reynard Adrian — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#07101a; --muted:#9fb6bf; --accent:#00f5ff;
-  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
-}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;background:var(--bg);color:#d4f3f6;-webkit-font-smoothing:antialiased}
-body{overflow:hidden}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reynard Adrian Tjakrasendjaja — Portfolio & CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="CV." />
+  <style>
+    :root {
+      --bg: #07101a;
+      --muted: #9fb6bf;
+      --accent: #00f5ff;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius: 14px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    }
 
-/* Stage / slides */
-.stage{width:100vw;height:100vh;position:relative;overflow:hidden;background:
-  radial-gradient(1200px 600px at 10% 10%,rgba(0,245,255,0.03),transparent),
-  radial-gradient(900px 400px at 90% 90%,rgba(100,80,255,0.02),transparent),
-  var(--bg);}
-.slides{transition:transform .7s cubic-bezier(.2,.9,.2,1)}
-.slide{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;padding:48px}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
 
-/* Adaptive Card Layout */
-.card{
-  width:min(1100px,92%);
-  height:auto;
-  border-radius:16px;
-  padding:28px;
-  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));
-  box-shadow:0 18px 60px rgba(0,0,0,.6);
-  border:1px solid rgba(255,255,255,.03);
-  display:grid;
-  grid-template-columns:1fr 360px;
-  gap:28px;
-  align-items:start;
-}
-@media(max-width:900px){
-  .card{grid-template-columns:1fr;padding:18px;gap:20px}
-  .card aside{order:2;padding-left:0;border-left:none;border-top:1px solid rgba(255,255,255,0.05);margin-top:12px;padding-top:12px}
-}
+    body {
+      overflow-x: hidden;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(0,245,255,0.035), transparent),
+        radial-gradient(900px 400px at 90% 90%, rgba(100,80,255,0.02), transparent),
+        var(--bg);
+      color: #d4f3f6;
+      line-height: 1.45;
+    }
 
-/* content */
-.left h1,.left h2{margin:0;color:#e7ffff}
-.left p{color:#cfeef2;margin-top:12px;line-height:1.5}
-.badge{display:inline-block;padding:8px 10px;margin:4px;border-radius:999px;background:rgba(255,255,255,.02);color:var(--muted);font-weight:600}
-aside{border-left:1px solid rgba(255,255,255,.03);padding-left:18px}
+    .wrap {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
 
-.carousel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  margin-top: 16px;
-  width: 100%;
-  height: 420px;
-  background: rgba(255,255,255,0.02);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
 
-.carousel .images {
-  display: flex;
-  transition: transform 0.6s ease;
-  width: 100%;
-  height: 100%;
-}
+    .brand { display: flex; gap: 14px; align-items: center; }
 
-.carousel .images img {
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* or cover if you prefer full fill */
-  border-radius: 16px;
-  background: #000;
-}
+    .logo {
+      width: 56px; height: 56px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #6ce0ff);
+      display: grid; place-items: center;
+      color: #021018; font-weight: 800; font-size: 20px; flex-shrink: 0;
+      box-shadow: 0 6px 24px rgba(0,245,255,0.06), 0 2px 8px rgba(0,0,0,0.6);
+    }
 
+    nav a {
+      color: var(--muted); text-decoration: none;
+      margin-left: 14px; font-weight: 600;
+      transition: color .18s, transform .18s;
+    }
+    nav a:hover { color: var(--accent); transform: translateY(-2px); }
 
-.carousel button{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.4);
-  border:none;
-  color:white;
-  padding:10px 14px;
-  cursor:pointer;
-  border-radius:10px;
-  z-index:10;
-}
-.carousel .prev{left:14px}.carousel .next{right:14px}
-.carousel button:hover{background:rgba(0,0,0,0.6)}
+    /* ── Hero grid ── */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
 
-.project-image{
-  display:block;
-  width:100%;
-  height:420px;
-  object-fit:contain;
-  border-radius:16px;
-  margin-top:16px;
-  background:#000;
-}
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .profile { position: static !important; }
+    }
 
-/* Dots, topbar */
-.dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:40}
-.dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.06);cursor:pointer;border:1px solid rgba(255,255,255,.03)}
-.dot.active{background:linear-gradient(90deg,var(--accent),#6ce0ff);box-shadow:0 6px 20px rgba(0,245,255,.06)}
-.topbar{position:fixed;left:50%;transform:translateX(-50%);top:18px;z-index:50;width:min(1100px,92%);display:flex;justify-content:space-between;align-items:center;gap:12px;pointer-events:none}
-.topbar .left,.topbar .right{pointer-events:auto}
-.download{background:linear-gradient(90deg,var(--accent),#6ce0ff);color:#021018;padding:10px 14px;border-radius:10px;font-weight:800;text-decoration:none}
-</style>
+    /* ── Card ── */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 6px 30px rgba(2,10,14,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ── Profile / Sidebar ── */
+    .profile {
+      position: sticky; top: 20px;
+      text-align: center; padding: 24px 18px;
+      align-self: start;
+    }
+
+    .avatar {
+      width: 110px; height: 110px; border-radius: 18px;
+      margin: 0 auto 14px auto;
+      background: linear-gradient(135deg, rgba(0,245,255,0.1), rgba(108,224,255,0.05));
+      display: grid; place-items: center;
+      font-weight: 800; color: var(--accent); font-size: 40px;
+      border: 1px solid rgba(0,245,255,0.15);
+    }
+
+    .profile-name { font-weight: 800; font-size: 18px; color: #e7ffff; margin-bottom: 2px; }
+    .profile-sub { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+
+    .contact { color: var(--muted); font-weight: 600; font-size: 13px; }
+    .contact a {
+      color: var(--muted); text-decoration: none;
+      display: block; margin-top: 5px;
+      transition: color .15s;
+    }
+    .contact a:hover { color: var(--accent); }
+
+    .social-label { margin-top: 14px; font-weight: 700; color: #e7ffff; }
+
+    .cta { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+
+    .btn {
+      background: linear-gradient(90deg, rgba(0,245,255,0.08), rgba(108,224,255,0.06));
+      color: var(--accent); font-weight: 700; padding: 10px 14px; border-radius: 12px;
+      text-decoration: none; border: 1px solid rgba(0,245,255,0.12);
+      transition: transform .12s, box-shadow .12s; display: inline-block; text-align: center;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,245,255,0.08); }
+    .btn-sm { padding: 5px 10px; font-size: 12px; }
+
+    .profile-edu { margin-top: 18px; text-align: left; width: 100%; }
+
+    /* ── About ── */
+    .about-card { min-width: 0; }
+
+    .page-title { font-size: 24px; font-weight: 700; color: #e7ffff; margin-bottom: 4px; letter-spacing: -0.2px; }
+    .subtitle { color: var(--muted); font-weight: 600; margin-bottom: 14px; }
+    .about-card p { color: #cfeef2; margin-bottom: 12px; }
+
+    /* ── Neon divider ── */
+    .neon-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,245,255,0.12), transparent);
+      margin: 18px 0; border-radius: 4px;
+    }
+
+    /* ── Tables ── */
+    .info-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 14px; margin: 12px 0;
+    }
+    .info-table th,
+    .info-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: top;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      text-align: left;
+    }
+    .info-table th { color: var(--accent); font-weight: 700; }
+    .info-table tr:last-child td,
+    .info-table tr:last-child th { border-bottom: none; }
+    .info-table tr:hover td { background: rgba(255,255,255,0.015); }
+
+    .gpa-table td:first-child,
+    .gpa-table th:first-child { width: 110px; }
+
+    /* Skill level bar */
+    .skill-bar-wrap {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .skill-bar {
+      flex: 1; height: 6px; background: rgba(255,255,255,0.06);
+      border-radius: 99px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #6ce0ff);
+      border-radius: 99px;
+    }
+    .skill-level-num { font-size: 12px; color: var(--muted); min-width: 20px; }
+
+    /* ── Badges ── */
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .badge {
+      padding: 7px 12px; border-radius: 999px;
+      background: var(--glass); color: var(--muted);
+      font-weight: 600; font-size: 13px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ── Projects ── */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; margin-top: 16px;
+    }
+    @media (max-width: 600px) { .projects { grid-template-columns: 1fr; } }
+
+    .project {
+      padding: 18px; border-radius: 14px;
+      background: linear-gradient(180deg, var(--glass), var(--glass-2));
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: all .2s ease;
+    }
+    .project:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,245,255,0.2);
+      box-shadow: 0 10px 30px rgba(0,245,255,0.07);
+    }
+    .project h4 { color: #eaffff; margin-bottom: 6px; }
+    .project p { color: var(--muted); margin-bottom: 10px; font-size: 14px; }
+    .project .meta { font-size: 13px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+    /* ── Sections ── */
+    section { margin-bottom: 20px; }
+
+    .section-title {
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .muted { color: var(--muted); }
+    .small-muted { color: var(--muted); font-weight: 600; font-size: 13px; }
+
+    h3 { color: #e7ffff; margin-bottom: 10px; font-size: 16px; font-weight: 700; }
+    h4 { color: #e7ffff; margin-bottom: 6px; font-size: 15px; }
+
+    /* ── Experience table ── */
+    .exp-table { font-size: 13px; }
+    .exp-table th, .exp-table td { padding: 8px 10px; }
+    .exp-table td:first-child { white-space: nowrap; min-width: 100px; }
+
+    /* ── Scrollable table container ── */
+    .table-scroll {
+      max-height: 320px;
+      overflow-y: auto;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0,245,255,0.2) transparent;
+    }
+    .table-scroll::-webkit-scrollbar { width: 5px; }
+    .table-scroll::-webkit-scrollbar-track { background: transparent; }
+    .table-scroll::-webkit-scrollbar-thumb { background: rgba(0,245,255,0.2); border-radius: 99px; }
+    .table-scroll .info-table { margin: 0; }
+    .table-scroll .info-table thead th {
+      position: sticky; top: 0; z-index: 1;
+      background: #0d1e2a;
+      border-bottom: 1px solid rgba(0,245,255,0.12);
+    }
+    .table-scroll .info-table tr:last-child td { border-bottom: none; }
+
+    /* Grade badge coloring */
+    .grade-A  { color: #00f5ff; font-weight: 700; }
+    .grade-B  { color: #7de8c8; font-weight: 600; }
+    .grade-C  { color: #f5b800; font-weight: 600; }
+
+    /* ── Collapsible (keep for potential future use) ── */
+    .collapsible-btn {
+      background: none; border: none; color: var(--accent);
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      padding: 4px 10px; border-radius: 8px;
+      border: 1px solid rgba(0,245,255,0.15);
+      transition: background .15s;
+    }
+    .collapsible-btn:hover { background: rgba(0,245,255,0.06); }
+    .collapsible-content { overflow: hidden; transition: max-height .3s ease; }
+    .collapsible-content.collapsed { max-height: 0; }
+
+    /* ── PDF embed ── */
+    .pdf-embed {
+      width: 100%; height: 420px; border-radius: 10px;
+      overflow: hidden; margin-top: 12px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    /* ── Contact form ── */
+    .contact-form {
+      padding: 16px; border-radius: var(--radius);
+      border: 1px dashed rgba(255,255,255,0.06);
+    }
+    .form-label {
+      display: block; color: var(--muted); font-size: 13px;
+      font-weight: 600; margin-bottom: 6px; margin-top: 12px;
+    }
+    .form-label:first-child { margin-top: 0; }
+    .form-input {
+      width: 100%; padding: 10px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      color: inherit; font-family: inherit; font-size: 14px;
+      outline: none; transition: border-color .15s;
+    }
+    .form-input:focus { border-color: rgba(0,245,255,0.25); }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 16px; color: var(--muted);
+      text-align: center; font-size: 13px; padding-bottom: 24px;
+    }
+
+    /* ── GPA trend spark ── */
+    .gpa-spark { display: flex; align-items: flex-end; gap: 4px; height: 32px; margin-top: 10px; }
+    .gpa-bar {
+      flex: 1; border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--accent), rgba(0,245,255,0.3));
+      position: relative;
+    }
+    .gpa-bar span {
+      position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
+      font-size: 10px; color: var(--muted); white-space: nowrap;
+    }
+  </style>
 </head>
-
 <body>
-  <div class="stage">
-    <div class="topbar">
-      <div class="left" style="display:flex;gap:12px;align-items:center">
-        <div style="background:linear-gradient(135deg,var(--accent),#6ce0ff);width:42px;height:42px;border-radius:10px;display:grid;place-items:center;font-weight:800;color:#021018">RA</div>
-        <div style="color:#e7ffff;font-weight:800">Reynard Adrian</div>
-        <div id="slideIndex" style="color:#9fb6bf;font-weight:700;font-size:13px;margin-left:6px">01 / 06</div>
+<div class="wrap">
+
+  <!-- ═══ HEADER ═══ -->
+  <header>
+    <div class="brand">
+      <div class="logo">RA</div>
+      <div>
+        <div style="font-weight:800;color:#e7ffff">Reynard Adrian Tjakrasendjaja</div>
+        <div style="color:var(--muted);font-size:13px">Software Developer • Computer Science — BINUS Bandung</div>
       </div>
-      <div class="right"><a class="download" href="./CV.pdf" download>Download CV</a></div>
     </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#grades">Grades</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <div class="slides" id="slides">
+  <main>
 
-      <!-- Slide 1 -->
-      <section class="slide" data-index="0">
-        <div class="card">
-          <div class="left">
-            <h1>Hi, I'm Reynard Adrian</h1>
-            <div style="color:#9fb6bf">Software Developer • Computer Science</div>
-            <p>I am a programming enthusiast with a passion for debugging and understanding the logic of code. I have experience developing software, integrating AI models, and building game mechanics. I also have hands-on experience assembling hardware and collaborating on machine learning research.</p>
-            <div style="margin-top:18px">
-              <span class="badge">C</span><span class="badge">C#</span><span class="badge">C++</span><span class="badge">Python</span>
-              <span class="badge">Java</span><span class="badge">Unity</span><span class="badge">Machine Learning</span><span class="badge">Web Dev</span>
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+
+      <!-- LEFT: Main content -->
+      <div class="card about-card">
+
+        <!-- Intro -->
+        <div class="section-title">
+          <div>
+            <h1 class="page-title">Reynard Adrian Tjakrasendjaja</h1>
+            <div class="subtitle">Programming enthusiast focused on debugging, logic, and software development.</div>
+          </div>
+          <div class="small-muted">Bandung, Indonesia</div>
+        </div>
+
+        <p id="about">
+          I am a programming enthusiast with a passion for debugging and understanding the logic of code.
+          I have experience developing software, integrating AI models, and building game mechanics. I also
+          have hands-on experience assembling hardware and collaborating on research projects in machine learning.
+        </p>
+
+        <div class="neon-line"></div>
+
+        <!-- Academic Information -->
+        <h3 id="academic">Academic Information</h3>
+        <table class="info-table">
+          <tbody>
+            <tr><td><b>Student ID</b></td><td>2702262564</td></tr>
+            <tr><td><b>Binusian ID</b></td><td>BN124984145</td></tr>
+            <tr><td><b>Current Semester</b></td><td>2025, Even Semester</td></tr>
+            <tr><td><b>Current GPA</b></td><td>3.16</td></tr>
+            <tr><td><b>Degree</b></td><td>Undergraduate (Bandung)</td></tr>
+            <tr><td><b>Campus</b></td><td>Binus Bandung</td></tr>
+            <tr><td><b>Major</b></td><td>Computer Science</td></tr>
+            <tr><td><b>Streaming</b></td><td>Software Engineering</td></tr>
+          </tbody>
+        </table>
+
+        <div class="neon-line"></div>
+
+        <!-- Personal Information -->
+        <h3>Personal Information</h3>
+        <table class="info-table">
+          <tbody>
+            <tr><td><b>Full Name</b></td><td>Reynard Adrian Tjakrasendjaja</td></tr>
+            <tr><td><b>Email (BINUS)</b></td><td>reynard.tjakrasendjaja@binus.ac.id</td></tr>
+            <tr><td><b>Email (Personal)</b></td><td>reynardadrian25@gmail.com</td></tr>
+            <tr><td><b>Date of Birth</b></td><td>25 December 2004</td></tr>
+            <tr><td><b>Phone</b></td><td>+62 815-7072-877</td></tr>
+            <tr><td><b>Gender</b></td><td>Male</td></tr>
+            <tr><td><b>Address</b></td><td>Setraduta blok Cipaganti No.39d</td></tr>
+          </tbody>
+        </table>
+
+        <div class="neon-line"></div>
+
+        <!-- Key Skills -->
+        <div>
+          <div style="font-weight:700;color:#e7ffff;margin-bottom:8px">Key Skills</div>
+          <div class="badges">
+            <span class="badge">C</span>
+            <span class="badge">C#</span>
+            <span class="badge">C++</span>
+            <span class="badge">Python</span>
+            <span class="badge">Java</span>
+            <span class="badge">Unity / GameDev</span>
+            <span class="badge">Machine Learning</span>
+            <span class="badge">Web Dev</span>
+            <span class="badge">Hardware</span>
+          </div>
+        </div>
+
+        <div class="neon-line"></div>
+
+        <!-- Student Skills -->
+        <h3>Student Skills</h3>
+        <table class="info-table">
+          <tbody>
+            <tr>
+              <td style="width:200px">Communication Skills</td>
+              <td>
+                <div class="skill-bar-wrap">
+                  <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                  <span class="skill-level-num">7/10</span>
+                </div>
+                <div style="font-size:12px;color:var(--muted);margin-top:3px">good at communication</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Leadership Skills</td>
+              <td>
+                <div class="skill-bar-wrap">
+                  <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                  <span class="skill-level-num">7/10</span>
+                </div>
+                <div style="font-size:12px;color:var(--muted);margin-top:3px">able to understand the group</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Computer Skills</td>
+              <td>
+                <div class="skill-bar-wrap">
+                  <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                  <span class="skill-level-num">8/10</span>
+                </div>
+                <div style="font-size:12px;color:var(--muted);margin-top:3px">can adapt to many languages</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Language Skills</td>
+              <td>
+                <div class="skill-bar-wrap">
+                  <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                  <span class="skill-level-num">8/10</span>
+                </div>
+                <div style="font-size:12px;color:var(--muted);margin-top:3px">quite decent at English</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Technical Skills</td>
+              <td>
+                <div class="skill-bar-wrap">
+                  <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                  <span class="skill-level-num">8/10</span>
+                </div>
+                <div style="font-size:12px;color:var(--muted);margin-top:3px">good at hardware</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="neon-line"></div>
+
+        <!-- GPA Per Semester -->
+        <h3>Student GPA per Semester</h3>
+        <table class="info-table gpa-table">
+          <thead>
+            <tr><th>Semester</th><th>GPA</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>3.08</td></tr>
+            <tr><td>2</td><td>3.08</td></tr>
+            <tr><td>3</td><td>3.10</td></tr>
+            <tr><td>4</td><td>3.18</td></tr>
+            <tr><td>5</td><td>3.16</td></tr>
+            <tr><td>6</td><td>3.16</td></tr>
+          </tbody>
+        </table>
+        <!-- Mini sparkline chart -->
+        <div class="gpa-spark" style="margin-bottom:20px">
+          <div class="gpa-bar" style="height:52%"><span>1</span></div>
+          <div class="gpa-bar" style="height:52%"><span>2</span></div>
+          <div class="gpa-bar" style="height:56%"><span>3</span></div>
+          <div class="gpa-bar" style="height:72%"><span>4</span></div>
+          <div class="gpa-bar" style="height:64%"><span>5</span></div>
+          <div class="gpa-bar" style="height:64%"><span>6</span></div>
+        </div>
+
+        <div class="neon-line"></div>
+
+        <!-- Projects -->
+        <div id="projects">
+          <div class="section-title">
+            <strong style="color:#e7ffff">Selected Projects</strong>
+            <span class="muted" style="font-size:13px">Team & Individual — AI, Web, GameDev</span>
+          </div>
+          <div class="projects">
+            <article class="project">
+              <h4>SkillLink</h4>
+              <p>Job-matching website with advanced categorization; responsible for front-end, back-end, and responsive UI.</p>
+              <div class="meta">
+                <span>HTML, CSS, JS, Backend</span>
+                <a class="btn btn-sm" href="skilllink.html">View →</a>
+              </div>
+            </article>
+            <article class="project">
+              <h4>Astro-ACE</h4>
+              <p>Bullet-hell 2D shooter (Unity, C#) — player shooting, bullet patterns and enemy spawning.</p>
+              <div class="meta">
+                <span>Unity, C#</span>
+                <a class="btn btn-sm" href="astro-ace.html">View →</a>
+              </div>
+            </article>
+            <article class="project">
+              <h4>QuickTask</h4>
+              <p>Web platform using AI/NLP to suggest writing improvements; front-end and AI integration.</p>
+              <div class="meta">
+                <span>Web, NLP</span>
+                <a class="btn btn-sm" href="quicktask.html">View →</a>
+              </div>
+            </article>
+            <article class="project">
+              <h4>Signature Forgery Detection</h4>
+              <p>EGACNN and CNN-AE models to compare real vs fake signatures for fraud prevention research.</p>
+              <div class="meta">
+                <span>PyTorch, CV</span>
+                <a class="btn btn-sm" href="signature.html">View →</a>
+              </div>
+            </article>
+            <article class="project">
+              <h4>Social Media VA</h4>
+              <p>AI chatbot with speech-to-text and text-to-speech features designed for elderly users.</p>
+              <div class="meta">
+                <span>Flutter, Python, AI</span>
+                <a class="btn btn-sm" href="socialmedia.html">View →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="neon-line"></div>
+
+        <!-- Experience -->
+        <div id="experience">
+          <div class="section-title">
+            <h3 style="margin:0">Experience (Student Activity Transcript)</h3>
+            <span class="small-muted">24 activities · scroll to see all</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="info-table exp-table">
+              <thead>
+                <tr>
+                  <th>Period</th>
+                  <th>PIC / Organizer</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>13 Oct 2023</td>
+                  <td>BINUS International Office</td>
+                  <td>Animation for Visual Communication Design Industry</td>
+                </tr>
+                <tr>
+                  <td>12 Oct 2023</td>
+                  <td>BINUS International Office</td>
+                  <td>Data Visualization Using MS PowerBI</td>
+                </tr>
+                <tr>
+                  <td>23 Nov 2023</td>
+                  <td>SOCS</td>
+                  <td>International Seminar: How do you explore the relationships between variables?</td>
+                </tr>
+                <tr>
+                  <td>23 Nov 2023</td>
+                  <td>SOCS</td>
+                  <td>International Seminar: Decoding the Future — Predictive Power of Regression in Business Analytics</td>
+                </tr>
+                <tr>
+                  <td>24 Jul – 07 Sep 2023</td>
+                  <td>Binus University</td>
+                  <td>First Year Program B2027 — Orientation Transition Program #Collaboration #AppliedManagementSkills</td>
+                </tr>
+                <tr>
+                  <td>22 Feb 2024</td>
+                  <td>International Office</td>
+                  <td>NUNI International Seminar Series #7 — Dr. Thinzar Win</td>
+                </tr>
+                <tr>
+                  <td>13 Mar 2025</td>
+                  <td>CMC</td>
+                  <td>Studium Generale BINUS University x YoungOnTop</td>
+                </tr>
+                <tr>
+                  <td>15 Sep 2025</td>
+                  <td>Internship Center</td>
+                  <td>Career Camp: Personal Branding &amp; First Impression</td>
+                </tr>
+                <tr>
+                  <td>15 Sep 2025</td>
+                  <td>Internship Center</td>
+                  <td>Career Camp: Internship Survival Guide</td>
+                </tr>
+                <tr>
+                  <td>15 Sep 2025</td>
+                  <td>Internship Center</td>
+                  <td>Career Camp: Know Your Self &amp; Build Your CV</td>
+                </tr>
+                <tr>
+                  <td>16 Sep 2025</td>
+                  <td>Ira Setyawati</td>
+                  <td>Career Camp: Networking &amp; Collaboration</td>
+                </tr>
+                <tr>
+                  <td>19–21 Nov 2025</td>
+                  <td>BEC</td>
+                  <td>Entrepreneurship Market Validation: Business Market Festival (Pameran)</td>
+                </tr>
+                <tr>
+                  <td>19–21 Nov 2025</td>
+                  <td>BEC</td>
+                  <td>Business Market Fest</td>
+                </tr>
+                <tr>
+                  <td>10 Mar 2026</td>
+                  <td>School of Computer Science</td>
+                  <td>Seminar Pre-Conference ICCSCI 2026: Stable Embedding Based Kalman Filters for State Estimation</td>
+                </tr>
+                <tr>
+                  <td>09 Apr 2026</td>
+                  <td>CGE</td>
+                  <td>Launch Your Future in USA: Begin with Studying at Boston University Metropolitan College</td>
+                </tr>
+                <tr>
+                  <td>05 May 2026</td>
+                  <td>CGE</td>
+                  <td>Engage, Empower, Connect: The European Union Approach to Youth Collaboration</td>
+                </tr>
+                <tr>
+                  <td>06 May 2026</td>
+                  <td>CGE</td>
+                  <td>Small Isn't Small*</td>
+                </tr>
+                <tr>
+                  <td>07 May 2026</td>
+                  <td>CGE</td>
+                  <td>Who has the Most Sustainable Campus in Indonesia</td>
+                </tr>
+                <tr>
+                  <td>11 May 2026</td>
+                  <td>CGE</td>
+                  <td>Study in Japan with MEXT Scholarship</td>
+                </tr>
+                <tr>
+                  <td>12 May 2026</td>
+                  <td>School of Computer Science</td>
+                  <td>GLS — Agile Software Development Integrated with Project Management</td>
+                </tr>
+                <tr>
+                  <td>12 May 2026</td>
+                  <td>School of Computer Science</td>
+                  <td>GLS — Introduction to Research Design</td>
+                </tr>
+                <tr>
+                  <td>12 May 2026</td>
+                  <td>BINUS Internationalization Office</td>
+                  <td>Digital Utopia or Dystopia: How Banks Are Responding to Fintech</td>
+                </tr>
+                <tr>
+                  <td>19 May 2026</td>
+                  <td>School of Computer Science</td>
+                  <td>GLS Seminar — Design to Deliver: A Guide to Software Design and Practicum</td>
+                </tr>
+                <tr>
+                  <td>19 May 2026</td>
+                  <td>School of Computer Science</td>
+                  <td>GLS Seminar: Linear Regression</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="neon-line"></div>
+
+        <!-- Academic Record / Grades -->
+        <div id="grades">
+          <div class="section-title">
+            <h3 style="margin:0">Academic Record (Subject Grades)</h3>
+            <button class="collapsible-btn" onclick="toggleSection('grades-content', this)">Show all</button>
+          </div>
+
+          <!-- First 8 always visible -->
+          <table class="info-table">
+            <thead><tr><th>Course Name</th><th>Grade</th></tr></thead>
+            <tbody>
+              <tr><td>Agile Software Development</td><td>B+</td></tr>
+              <tr><td>Human and Computer Interaction</td><td>A-</td></tr>
+              <tr><td>Scientific Computing</td><td>B+</td></tr>
+              <tr><td>Algorithm and Programming</td><td>B</td></tr>
+              <tr><td>Linear Algebra</td><td>B</td></tr>
+              <tr><td>Discrete Mathematics</td><td>B-</td></tr>
+              <tr><td>Program Design Methods</td><td>A-</td></tr>
+              <tr><td>Basic Statistics</td><td>B-</td></tr>
+            </tbody>
+          </table>
+
+          <!-- Collapsible remaining -->
+          <div id="grades-content" class="collapsible-content collapsed">
+            <table class="info-table" style="margin-top:0">
+              <tbody>
+                <tr><td>Character Building: Agama</td><td>A</td></tr>
+                <tr><td>Data Structures</td><td>A-</td></tr>
+                <tr><td>Entrepreneurship: Ideation</td><td>B+</td></tr>
+                <tr><td>Indonesian</td><td>A-</td></tr>
+                <tr><td>Character Building: Pancasila</td><td>A</td></tr>
+                <tr><td>English for Professionals</td><td>B</td></tr>
+                <tr><td>Character Building: Kewarganegaraan</td><td>C</td></tr>
+                <tr><td>Calculus</td><td>C</td></tr>
+                <tr><td>Artificial Intelligence</td><td>B+</td></tr>
+                <tr><td>Pattern Software Design</td><td>A-</td></tr>
+                <tr><td>Code Reengineering</td><td>B</td></tr>
+                <tr><td>Algorithm Design and Analysis</td><td>B+</td></tr>
+                <tr><td>Object Oriented Programming</td><td>C</td></tr>
+                <tr><td>Software Engineering</td><td>B+</td></tr>
+                <tr><td>Computational Biology</td><td>A-</td></tr>
+                <tr><td>Research Methodology in Computer Science</td><td>A-</td></tr>
+                <tr><td>Computational Physics</td><td>C</td></tr>
+                <tr><td>Computer Networks</td><td>A</td></tr>
+                <tr><td>Database Technology</td><td>B</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <!-- END: Main content card -->
+
+      <!-- RIGHT: Sidebar -->
+      <aside class="card profile">
+        <div class="avatar">RA</div>
+        <div class="profile-name">Reynard Adrian</div>
+        <div class="profile-sub">Tjakrasendjaja</div>
+
+        <div class="contact">
+          <div>Bandung, Indonesia</div>
+          <a href="tel:+628157072877">+62 815-7072-877</a>
+          <a href="mailto:reynardadrian25@gmail.com">reynardadrian25@gmail.com</a>
+          <a href="mailto:reynard.tjakrasendjaja@binus.ac.id">reynard.tjakrasendjaja@binus.ac.id</a>
+
+          <div class="social-label">Social Network</div>
+          <a href="https://morpheus4005.github.io/PortfolioReynard/" target="_blank">Portfolio Website</a>
+          <a href="https://github.com/Morpheus4005" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/reynard-adrian-b1129437a/" target="_blank">LinkedIn</a>
+          <a href="https://line.me/ti/p/~reynardtjakra" target="_blank">Line: reynardtjakra</a>
+          <a href="https://facebook.com/Reynard Adrian" target="_blank">Facebook: Reynard Adrian</a>
+        </div>
+
+        <div class="cta">
+          <a class="btn" href="./Reynard-Portfolio.pdf" target="_blank">Open Portfolio (PDF)</a>
+          <a class="btn" href="./CV.pdf" download>Download CV</a>
+        </div>
+
+        <div class="profile-edu">
+          <div class="small-muted" style="margin-bottom:6px">Education</div>
+          <div style="font-weight:700;color:#e7ffff">BINUS University</div>
+          <div class="muted" style="font-size:13px">Bachelor of Computer Science</div>
+          <div class="muted" style="font-size:13px">2023 – Present · Bandung</div>
+
+          <div style="margin-top:14px">
+            <div class="small-muted" style="margin-bottom:4px">GPA Progress</div>
+            <div style="font-size:13px;color:#e7ffff;font-weight:700">3.16 <span style="color:var(--muted);font-weight:400;font-size:12px">current</span></div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="small-muted" style="margin-bottom:6px">Strengths</div>
+            <ul style="padding-left:16px;color:var(--muted);font-size:13px;line-height:1.9">
+              <li>Problem solving &amp; critical thinking</li>
+              <li>Adaptive team player</li>
+              <li>Debugging &amp; logic interpretation</li>
+              <li>Good at hardware</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+    </section>
+    <!-- END: Hero -->
+
+    <!-- ═══ EDUCATION & EXPERIENCE SUMMARY ═══ -->
+    <section id="education-section" class="card">
+      <div class="section-title">
+        <strong style="color:#e7ffff">Education &amp; Experience</strong>
+        <span class="muted" style="font-size:13px">Academic background and selected activities</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <h4>Education</h4>
+          <p class="muted" style="margin-bottom:8px;font-size:14px"><strong>BINUS University</strong> — Bachelor of Computer Science (2023 – Present), Bandung</p>
+          <p class="muted" style="font-size:14px"><strong>St. Angela Senior High School</strong> — Science Program (2020 – 2023)</p>
+
+          <h4 style="margin-top:14px">Selected Projects &amp; Experience</h4>
+          <ul style="color:var(--muted);padding-left:18px;margin-top:8px;font-size:14px;line-height:1.9">
+            <li>SkillLink — job categorization website (front-end &amp; back-end)</li>
+            <li>QuickTask — front-end + AI integration (NLP)</li>
+            <li>Astro-ACE — Unity 2D shooter (C#)</li>
+            <li>Signature Forgery Detection — EGACNN &amp; CNN-AE (research)</li>
+            <li>Social Media Virtual Assistant — AI chatbot for elderly (TTS/STT)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Leadership &amp; Volunteer</h4>
+          <p class="muted" style="font-size:14px">SkillLink &amp; QuickTask leadership roles: task assignment, coordinating team delivery under deadlines.</p>
+
+          <div style="margin-top:14px">
+            <h4>Technical Skills</h4>
+            <div class="badges" style="margin-top:8px">
+              <span class="badge">C / C# / C++</span>
+              <span class="badge">Python</span>
+              <span class="badge">Java</span>
+              <span class="badge">Unity</span>
+              <span class="badge">Machine Learning</span>
             </div>
           </div>
-          <aside>
-            <div style="width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,var(--accent),#6ce0ff);display:grid;place-items:center;font-weight:800;color:#021018;font-size:40px;margin:0 auto 12px">RA</div>
-            <div style="text-align:center;font-weight:800;color:#e7ffff">Reynard Adrian</div>
-            <div style="color:#9fb6bf;margin-top:8px">Jakarta, Indonesia</div>
-            <a href="mailto:reynardadrian25@gmail.com" style="color:#9fb6bf;text-decoration:none;display:block;margin-top:6px">reynardadrian25@gmail.com</a>
-            <div style="color:#9fb6bf;margin-top:6px">+62 815-7072-877</div>
-          </aside>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SkillLink -->
-      <section class="slide" data-index="1">
-        <div class="card">
-          <div class="left">
-            <h2>SkillLink</h2>
-            <div class="carousel" data-images="skilllink-1.png,skilllink-2.png,skilllink-3.png"></div>
+    <!-- ═══ CONTACT ═══ -->
+    <section id="contact" class="card">
+      <div class="section-title">
+        <strong style="color:#e7ffff">Contact</strong>
+        <span class="muted" style="font-size:13px">Let's connect</span>
+      </div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <form id="contactForm" class="contact-form">
+            <label class="form-label" for="cname">Name</label>
+            <input class="form-input" id="cname" name="name" type="text" placeholder="Your name" />
+
+            <label class="form-label" for="cemail">Email</label>
+            <input class="form-input" id="cemail" name="email" type="email" placeholder="you@example.com" />
+
+            <label class="form-label" for="cmessage">Message</label>
+            <textarea class="form-input" id="cmessage" name="message" rows="4" placeholder="Say hi or propose a collaboration..."></textarea>
+
+            <div style="margin-top:12px;text-align:right">
+              <button type="submit" class="btn">Send Message</button>
+            </div>
+            <div id="formStatus" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
+          </form>
+        </div>
+        <div style="flex-basis:260px;min-width:220px">
+          <div style="font-weight:700;color:#e7ffff;margin-bottom:8px">Direct Contact</div>
+          <div class="muted" style="font-size:14px">Email: reynardadrian25@gmail.com</div>
+          <div class="muted" style="font-size:14px;margin-top:4px">BINUS: reynard.tjakrasendjaja@binus.ac.id</div>
+          <div class="muted" style="font-size:14px;margin-top:4px">Phone: +62 815-7072-877</div>
+          <div class="muted" style="font-size:14px;margin-top:4px">Line: reynardtjakra</div>
+
+          <div style="margin-top:18px">
+            <div style="font-weight:700;color:#e7ffff;margin-bottom:8px">Portfolio PDF</div>
+            <a class="btn" href="./Reynard-Portfolio.pdf" target="_blank">Open Portfolio (PDF)</a>
           </div>
-          <aside>
-            <div style="font-weight:700;color:#e7ffff">Web Development</div>
-            <div style="color:#9fb6bf;margin-top:8px">Front-end & Back-end • Team Project</div>
-            <p style="color:#cfeef2;margin-top:12px">SkillLink is a website that helps people find jobs that match their needs and abilities. With an advanced categorization system, users can easily search for jobs based on categories such as field, location, and level of experience.</p>
-            <p style="color:#cfeef2;margin-top:12px">I contributed to both the back-end and front-end development, focusing on building a responsive interface and ensuring smooth functionality of the job categorization features. This project improved my problem-solving skills and teamwork.</p>
-          </aside>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Astro-ACE -->
-      <section class="slide" data-index="2">
-        <div class="card">
-          <div class="left">
-            <h2>Astro-ACE</h2>
-            <div class="carousel" data-images="astro-ace-1.png,astro-ace-2.png,astro-ace-3.png,astro-ace-4.png,astro-ace-5.png,astro-ace-6.png"></div>
-          </div>
-          <aside>
-            <div style="font-weight:700;color:#e7ffff">Game Development</div>
-            <div style="color:#9fb6bf;margin-top:8px">Unity • C#</div>
-            <p style="color:#cfeef2;margin-top:12px">Astro-ACE is a bullet-hell game inspired by the Touhou Project series, developed for an indie game competition. I implemented player shooting, bullet patterns, and enemy spawning while troubleshooting script and prefab issues.</p>
-            <p style="color:#cfeef2;margin-top:12px">This project enhanced my Unity and C# programming skills, teamwork, and gave me experience in indie game development.</p>
-          </aside>
-        </div>
-      </section>
-
-      <!-- QuickTask -->
-      <section class="slide" data-index="3">
-        <div class="card">
-          <div class="left">
-            <h2>QuickTask</h2>
-            <img src="quicktask-1.png" alt="QuickTask Screenshot" class="project-image">
-          </div>
-          <aside>
-            <div style="font-weight:700;color:#e7ffff">AI & Web App</div>
-            <div style="color:#9fb6bf;margin-top:8px">Front-end • NLP Integration</div>
-            <p style="color:#cfeef2;margin-top:12px">QuickTask is a web-based platform designed to help users write more easily and efficiently. Using AI and NLP, it provides writing suggestions relevant to the user’s context and style — academic, business, or creative.</p>
-            <p style="color:#cfeef2;margin-top:12px">I developed the front-end and integrated the AI model, honing my skills in web development and AI integration.</p>
-          </aside>
-        </div>
-      </section>
-
-      <!-- Social Media Virtual Assistant -->
-      <section class="slide" data-index="4">
-        <div class="card">
-          <div class="left">
-            <h2>Social Media Virtual Assistant</h2>
-            <div class="carousel" data-images="vsocial-1.png,vsocial-2.png,vsocial-3.png"></div>
-          </div>
-          <aside>
-            <div style="font-weight:700;color:#e7ffff">AI & Mobile Project</div>
-            <div style="color:#9fb6bf;margin-top:8px">Text-to-Speech • Speech-to-Text</div>
-            <p style="color:#cfeef2;margin-top:12px">An AI-powered chatbot application designed to assist the elderly in using WhatsApp more easily. The app features interactive chat bubbles with text-to-speech and speech-to-text integration.</p>
-            <p style="color:#cfeef2;margin-top:12px">I integrated the AI chatbot functionality, improving accessibility and enhancing my technical and critical thinking skills.</p>
-          </aside>
-        </div>
-      </section>
-
-      <!-- Signature Forgery Detection -->
-      <section class="slide" data-index="5">
-        <div class="card">
-          <div class="left">
-            <h2>Signature Forgery Detection Using AI</h2>
-            <img src="signature-1.png" alt="Signature Forgery Screenshot" class="project-image">
-          </div>
-          <aside>
-            <div style="font-weight:700;color:#e7ffff">AI Research</div>
-            <div style="color:#9fb6bf;margin-top:8px">EGACNN • CNN-AE</div>
-            <p style="color:#cfeef2;margin-top:12px">This research compares real and fake signatures using EGACNN and CNN-AE models to prevent fraud. The study aims to identify which AI model performs best for forgery detection.</p>
-            <p style="color:#cfeef2;margin-top:12px">Through this project, I gained valuable knowledge in AI model evaluation and real-world fraud prevention applications.</p>
-          </aside>
-        </div>
-      </section>
-
-    </div>
-  </div>
-
-  <div class="dots" id="dots"></div>
+    <!-- ═══ CV PREVIEW ═══ -->
+    <section class="card">
+      <div class="section-title">
+        <strong style="color:#e7ffff">CV Preview</strong>
+        <span class="muted" style="font-size:13px">Quick view of official BINUS CV</span>
+      </div>
+      <div class="pdf-embed">
+        <iframe src="CV.pdf" style="width:100%;height:100%;border:0" title="CV Preview"></iframe>
+      </div>
+    </section>
+  </main>
+</div>
 
 <script>
-const slidesEl=document.getElementById('slides');
-const slides=[...document.querySelectorAll('.slide')];
-const dots=document.getElementById('dots');
-const slideIndex=document.getElementById('slideIndex');
-let current=0,isAnimating=false;
-slides.forEach((_,i)=>{
-  const d=document.createElement('div');
-  d.className='dot'+(i===0?' active':'');
-  d.addEventListener('click',()=>goTo(i));
-  dots.appendChild(d);
-});
-function update(){dots.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===current));slideIndex.textContent=`0${current+1} / 0${slides.length}`;}
-function goTo(i){if(isAnimating||i===current)return;if(i<0)i=0;if(i>=slides.length)i=slides.length-1;isAnimating=true;current=i;slidesEl.style.transform=`translateY(${-i*100}vh)`;setTimeout(()=>isAnimating=false,700);update();}
-window.addEventListener('wheel',e=>{if(isAnimating)return;e.deltaY>0?goTo(current+1):goTo(current-1);});
-document.querySelectorAll('.carousel').forEach(c=>{
-  const imgs=c.dataset.images.split(',').map(s=>s.trim());
-  const wrap=document.createElement('div');
-  wrap.className='images';
-  imgs.forEach(s=>{const i=document.createElement('img');i.src=s;wrap.appendChild(i);});
-  c.appendChild(wrap);
-  let idx=0;
-  const show=i=>{if(i<0)i=imgs.length-1;if(i>=imgs.length)i=0;idx=i;wrap.style.transform=`translateX(${-i*100}%)`;};
-  if(imgs.length>1){
-    const p=document.createElement('button');p.textContent='<';p.className='prev';
-    const n=document.createElement('button');n.textContent='>';n.className='next';
-    c.append(p,n);p.onclick=()=>show(idx-1);n.onclick=()=>show(idx+1);
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Smooth scroll
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Toggle collapsible
+  function toggleSection(id, btn) {
+    const el = document.getElementById(id);
+    const collapsed = el.classList.toggle('collapsed');
+    btn.textContent = collapsed ? 'Show all' : 'Hide';
   }
-  let t=setInterval(()=>show(idx+1),3000);
-  c.addEventListener('mouseenter',()=>clearInterval(t));
-  c.addEventListener('mouseleave',()=>t=setInterval(()=>show(idx+1),3000));
-});
-update();
+
+  // Contact form
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    status.textContent = "Thanks! To actually send messages, connect this form to an email API.";
+    setTimeout(() => status.textContent = '', 6000);
+  });
 </script>
 </body>
 </html>
-
